@@ -120,6 +120,16 @@ document.addEventListener('DOMContentLoaded', () => {
             { type: 'success', text: '[SUCCESS] Match Action: Clean / Auto-Archive triggered.' },
             { type: 'info', text: '[INFO] Headless Google Apps Script triggers running continuously.' }
         ],
+        'dawn-breakers': [
+            { type: 'input', text: 'dawn-breakers --status' },
+            { type: 'info', text: '[INFO] Starting Dawn-Breakers Study Companion...' },
+            { type: 'info', text: '[INFO] Initializing Canvas-based Force-Directed Graph simulation...' },
+            { type: 'success', text: '[SUCCESS] Loaded 120+ historical figures, 45+ cities, and 300+ connection links.' },
+            { type: 'info', text: '[INFO] Mounting offline-first search index (Typo-tolerant & Accent-insensitive)...' },
+            { type: 'success', text: '[SUCCESS] Fuzzy-search index ready. Cache synced for offline usage.' },
+            { type: 'info', text: '[INFO] Registering DOCX and PDF Booklet exporters...' },
+            { type: 'success', text: '[SUCCESS] Deployment verified: Live at https://skillith.github.io/dawn-breakers-companion/' }
+        ],
         'logic': [
             { type: 'input', text: 'wayfare-logic --route-optimization --itinerary "Brussels -> Paris"' },
             { type: 'info', text: '[INFO] Gathering flight/rail/bus data from Kiwi and Amadeus APIs...' },

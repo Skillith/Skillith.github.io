@@ -126,6 +126,22 @@ My fascination with AI began in 2022, watching early GPT models emerge. When GPT
 
 <br/>
 
+### 📖 Dawn-Breakers Companion
+> Offline-first study companion and interactive directory of names, cities, and connections for the historical narrative of the early Bahá'í Revelation.
+- **Tech Stack:** `React 19` `Vite` `Canvas-based Graph Simulation` `PWA`
+- **Status:** Deployed & Production Ready 🟢
+- **Links:** 🌐 [Live Webapp](https://skillith.github.io/dawn-breakers-companion/) | 🐙 [GitHub Repository](https://github.com/Skillith/dawn-breakers-companion)
+<details>
+<summary><b>🔍 Key Features & Architecture</b></summary>
+
+- Interactive canvas-based force-directed relation graph to visually map connections between historical figures.
+- Typo-tolerant and accent-insensitive fuzzy search.
+- Offline-first accessibility with custom Progressive Web App (PWA) configurations.
+- Offline document exporters supporting Microsoft Word (`.docx`) file generation.
+</details>
+
+<br/>
+
 ### 🧭 Wayfare Logic
 > Multi-modal conversational travel routing engine that connects flights, rail, and regional bus itineraries.
 - **Tech Stack:** `React` `TypeScript` `Vite` `Firebase Cloud Functions` `Kiwi/Amadeus APIs`
