@@ -162,8 +162,7 @@ My fascination with AI began in 2022, watching early GPT models emerge. When GPT
 ### 🏡 Wayfare Network
 > Mission-driven hospitality directory connecting travelers with local hosts through shared life, radical hospitality, and authentic community building.
 - **Tech Stack:** `React` `TypeScript` `Firebase Auth` `Pay-What-You-Want Model`
-- **Status:** Deployed & Live 🟢
-- **Links:** 🌐 [Live Platform](https://wayfare.network)
+- **Status:** In Design 🔵
 <details>
 <summary><b>🔍 Key Features & Architecture</b></summary>
 
