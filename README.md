@@ -94,6 +94,23 @@ My fascination with AI began in 2022, watching early GPT models emerge. When GPT
 
 <br/>
 
+### 🎲 Pingquest
+> Multiplayer tabletop LitRPG Progressive Web App powered by Gemini AI, fractional micro-progression, and live group consensus.
+- **Tech Stack:** `React 19` `TypeScript` `Gemini 3.7 Flash` `Firebase Firestore` `PWA`
+- **Status:** Deployed & Live 🟢
+- **Links:** 🌐 [Live Webapp](https://pingquest-rpg.web.app/) | 🐙 [GitHub Repository](https://github.com/Skillith/Pingquest)
+<details>
+<summary><b>🔍 Key Features & Architecture</b></summary>
+
+- Autonomous AI Dungeon Master ("The Guide") dynamically calculating circumstantial DC targets across 6 consequence tiers.
+- 10 core attributes with real-time decimal micro-progression (`+0.001` to `+0.100`) after every player action.
+- War Room voice deliberation integrating speech-to-text with AI consensus extraction and party voting.
+- Turn timer action pools with configurable AFK defensive guard auto-pilot stances.
+- Living story canvas persisting NPC relationship states, physical scars, and world clues.
+</details>
+
+<br/>
+
 ### 🎙️ Dalil Notecard
 > Hands-free tour guide assistant that transcribes speech in real-time and ticks off talking points automatically.
 - **Tech Stack:** `React` `TypeScript` `Speech Recognition API` `Firebase Auth & Firestore` `Google Gen AI`
@@ -138,6 +155,22 @@ My fascination with AI began in 2022, watching early GPT models emerge. When GPT
 - Typo-tolerant and accent-insensitive fuzzy search.
 - Offline-first accessibility with custom Progressive Web App (PWA) configurations.
 - Offline document exporters supporting Microsoft Word (`.docx`) file generation.
+</details>
+
+<br/>
+
+### 🏡 Wayfare Network
+> Mission-driven hospitality directory connecting travelers with local hosts through shared life, radical hospitality, and authentic community building.
+- **Tech Stack:** `React` `TypeScript` `Firebase Auth` `Pay-What-You-Want Model`
+- **Status:** Deployed & Live 🟢
+- **Links:** 🌐 [Live Platform](https://wayfare.network)
+<details>
+<summary><b>🔍 Key Features & Architecture</b></summary>
+
+- Host Commitment Charter mandating shared meals, cultural outings, and local community participation.
+- Friction-as-a-feature unlisted video application requirement filtering for high-intent, respectful travelers.
+- Sustainable Pay-What-You-Want (PWYW) community contribution model.
+- Unified Firebase authentication shared across the entire Wayfare ecosystem suite.
 </details>
 
 <br/>

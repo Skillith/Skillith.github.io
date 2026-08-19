@@ -101,6 +101,17 @@ document.addEventListener('DOMContentLoaded', () => {
             { type: 'info', text: '[INFO] Syncing capturing records to Exhibition Battles Hub...' },
             { type: 'success', text: '[SUCCESS] TerraCatch live environment: Online at https://terracatch.online' }
         ],
+        'pingquest': [
+            { type: 'input', text: 'pingquest --campaign "Whispering Caverns" --init-dm' },
+            { type: 'info', text: '[INFO] Initializing Gemini 3.7 Flash AI Dungeon Master ("The Guide")...' },
+            { type: 'info', text: '[INFO] Connecting to Firebase Firestore multiplayer room sync...' },
+            { type: 'success', text: '[SUCCESS] Session state hydrated. 4 party members connected.' },
+            { type: 'info', text: '[WAR-ROOM] Live voice deliberation stream active. Synthesizing consensus...' },
+            { type: 'success', text: '[CONSENSUS] Action proposal synthesized: "Flank the shadow drake".' },
+            { type: 'info', text: '[ENGINE] Resolving DC Check (Target: 14 | Roll + INT: 16.425)...' },
+            { type: 'success', text: '[SUCCESS] Outcome: Critical Success with +0.035 Arcana micro-growth.' },
+            { type: 'info', text: '[INFO] Story Canvas updated: Living NPC relationships and scars persisted.' }
+        ],
         'dalil': [
             { type: 'input', text: 'dalil-notecard --speech-daemon --listen' },
             { type: 'info', text: '[INFO] Starting hands-free speech listener...' },
@@ -129,6 +140,15 @@ document.addEventListener('DOMContentLoaded', () => {
             { type: 'success', text: '[SUCCESS] Fuzzy-search index ready. Cache synced for offline usage.' },
             { type: 'info', text: '[INFO] Registering DOCX and PDF Booklet exporters...' },
             { type: 'success', text: '[SUCCESS] Deployment verified: Live at https://skillith.github.io/dawn-breakers-companion/' }
+        ],
+        'network': [
+            { type: 'input', text: 'wayfare-network --host-directory --region "Haifa, Israel"' },
+            { type: 'info', text: '[INFO] Connecting to Wayfare unified Firebase Auth service...' },
+            { type: 'success', text: '[SUCCESS] Host directory loaded: 28 community listings available.' },
+            { type: 'info', text: '[HOST-CHARTER] Verifying host radical hospitality pledge...' },
+            { type: 'success', text: '[SUCCESS] Pledges verified: Shared meals, cultural tour & community gathering.' },
+            { type: 'info', text: '[GUEST-INTENT] Screening video application via unlisted stream token...' },
+            { type: 'success', text: '[SUCCESS] Application approved: Direct host contact unlocked.' }
         ],
         'logic': [
             { type: 'input', text: 'wayfare-logic --route-optimization --itinerary "Brussels -> Paris"' },
