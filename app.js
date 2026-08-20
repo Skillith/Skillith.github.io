@@ -210,6 +210,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 4. Dynamic Live User Stats Hydration
+    async function initLiveUserStats() {
+        const statsEndpoint = 'https://firestore.googleapis.com/v1/projects/pingquest-rpg/databases/(default)/documents/public_stats/portfolio';
+        
+        function animateValue(element, start, end, duration = 1200) {
+            if (!element) return;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                const currentVal = Math.floor(easeProgress * (end - start) + start);
+                element.textContent = currentVal.toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    element.textContent = end.toLocaleString();
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        try {
+            const response = await fetch(statsEndpoint);
+            if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+            const data = await response.json();
+            const fields = data.fields || {};
+
+            const statMapping = {
+                'terracatch_users': parseInt(fields.terracatch_users?.integerValue || '268', 10),
+                'morn_and_eve_users': parseInt(fields.morn_and_eve_users?.integerValue || '236', 10),
+                'dalil_users': parseInt(fields.dalil_users?.integerValue || '9', 10),
+                'pingquest_users': parseInt(fields.pingquest_users?.integerValue || '7', 10)
+            };
+
+            document.querySelectorAll('.user-stat-badge').forEach(badge => {
+                const statKey = badge.getAttribute('data-stat');
+                if (statKey && statMapping[statKey] !== undefined) {
+                    const numSpan = badge.querySelector('.stat-num');
+                    if (numSpan) {
+                        const targetVal = statMapping[statKey];
+                        animateValue(numSpan, 0, targetVal, 1000);
+                    }
+                }
+            });
+        } catch (err) {
+            console.log('[INFO] Loaded baseline user metrics:', err);
+        }
+    }
+
+    initLiveUserStats();
+
     // Close Modal
     function closeModal() {
         consoleModal.classList.remove('active');

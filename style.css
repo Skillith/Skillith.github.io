@@ -416,6 +416,46 @@ header {
     font-weight: 700;
 }
 
+.project-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: flex-start;
+}
+
+.user-stat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--accent-cyan);
+    background: rgba(6, 182, 212, 0.08);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    padding: 0.15rem 0.55rem;
+    border-radius: 20px;
+    font-family: var(--font-mono);
+    letter-spacing: -0.2px;
+    transition: all var(--transition-speed);
+}
+
+.user-stat-badge:hover {
+    background: rgba(6, 182, 212, 0.15);
+    border-color: rgba(6, 182, 212, 0.45);
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+}
+
+.user-stat-badge svg {
+    width: 12px;
+    height: 12px;
+    color: var(--accent-cyan);
+}
+
+.user-stat-badge .stat-num {
+    font-weight: 700;
+    color: #ffffff;
+}
+
 .project-status {
     display: inline-flex;
     align-items: center;
