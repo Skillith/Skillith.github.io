@@ -154,6 +154,20 @@ server.listen(8092, async () => {
                     };
                     document.getElementById('vitalsModalClose').click();
 
+                    // 6. Click Dalil Notecard
+                    const dalilBtn = document.querySelector('.btn-vitals[data-project="dalil"]');
+                    if (dalilBtn) dalilBtn.click();
+                    results.dalilModal = {
+                        opened: document.getElementById('vitalsModal').classList.contains('active'),
+                        title: document.getElementById('vitalsAppTitle').textContent,
+                        installs: document.getElementById('vitalInstalls').textContent,
+                        revenue: document.getElementById('vitalRevenue').textContent,
+                        paying: document.getElementById('vitalPaying').textContent,
+                        pricingModel: document.getElementById('vitalPricingModel').textContent,
+                        coreCount: document.getElementById('vitalCoreCount').textContent
+                    };
+                    document.getElementById('vitalsModalClose').click();
+
                     return results;
                 })()
             `,
@@ -173,16 +187,24 @@ server.listen(8092, async () => {
             console.error('FAIL: Morn & Eve should be free with $0 revenue');
             pass = false;
         }
-        if (testResults.terraCatchModal.installs !== '293') {
-            console.error('FAIL: TerraCatch installs expected 293, got', testResults.terraCatchModal.installs);
+        if (testResults.terraCatchModal.installs !== '293' || testResults.terraCatchModal.paying !== '1') {
+            console.error('FAIL: TerraCatch expected 293 installs and 1 paying user, got', testResults.terraCatchModal);
+            pass = false;
+        }
+        if (!testResults.terraCatchModal.revenue.includes('$2.99')) {
+            console.error('FAIL: TerraCatch revenue expected $2.99, got', testResults.terraCatchModal.revenue);
             pass = false;
         }
         if (testResults.pingquestModal.installs !== '52') {
             console.error('FAIL: Pingquest installs expected 52, got', testResults.pingquestModal.installs);
             pass = false;
         }
-        if (testResults.wayfareModal.installs !== '38') {
-            console.error('FAIL: Wayfare Guide installs expected 38, got', testResults.wayfareModal.installs);
+        if (testResults.wayfareModal.installs !== '14') {
+            console.error('FAIL: Wayfare Guide installs expected 14, got', testResults.wayfareModal.installs);
+            pass = false;
+        }
+        if (testResults.dalilModal.installs !== '9' || testResults.dalilModal.paying !== '1' || testResults.dalilModal.revenue !== '$4.99/mo') {
+            console.error('FAIL: Dalil Notecard expected 9 installs, 1 paying, $4.99/mo, got', testResults.dalilModal);
             pass = false;
         }
 

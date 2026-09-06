@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-06T10:39:04.109858+00:00",
+  "last_updated": "2026-09-06T10:59:04.544941+00:00",
   "apps": {
     "morn-eve": {
       "title": "Morn & Eve",
@@ -53,12 +53,12 @@
       "installs_label": "Verified Registered Players",
       "active_now": 0,
       "dau": 1,
-      "paying": 0,
-      "revenue": "$0 (Pre-revenue)",
-      "conversion_rate": "0.0%",
+      "paying": 1,
+      "revenue": "$2.99 (Test Purchase)",
+      "conversion_rate": "0.3%",
       "is_monetized": true,
       "pricing_model": "Google Play IAP",
-      "monetization_desc": "Evolution token packs and exhibition battle passes via Google Play Billing.",
+      "monetization_desc": "Leaves and evolution token packs via Google Play Billing (1 verified test purchase).",
       "core_action_name": "Quests & Profiles",
       "core_action_count": 744,
       "core_action_desc": "744 active quests and 595 registered player battle profiles.",
@@ -83,8 +83,8 @@
         },
         {
           "stage": "Google Play In-App Purchases",
-          "count": 0,
-          "pct": "0.0%"
+          "count": 1,
+          "pct": "0.3%"
         }
       ]
     },
@@ -101,13 +101,13 @@
       "conversion_rate": "0.0%",
       "is_monetized": true,
       "pricing_model": "Stripe Subscription",
-      "monetization_desc": "Campaign host pass ($15/mo) via Stripe billing integration.",
+      "monetization_desc": "Campaign host pass ($15/mo) and Vision Crystals packs via Stripe billing integration.",
       "core_action_name": "Chronicle Events",
       "core_action_count": 136,
       "core_action_desc": "136 living world events recorded across 12 party campaign rooms.",
-      "ai_cost": "$0.35",
-      "ai_desc": "Gemini 3.7 Flash high-throughput prompt caching per 1k action checks.",
-      "insight": "Room utilization: 12 dedicated campaign party rooms actively hosting living chronicles.",
+      "ai_cost": "$4.20",
+      "ai_desc": "Gemini 3.7 Flash prompt caching + Google Imagen 3 / Recraft V3 scene & battlemap generation.",
+      "insight": "Early image generation (Google Imagen 3) was a major cost driver; introducing Vision Crystals and prompt caching stabilized unit economics.",
       "funnel": [
         {
           "stage": "Registered Adventurers",
@@ -135,8 +135,8 @@
       "title": "Wayfare Guide",
       "status": "Launching Soon \ud83d\udfe2",
       "subtitle": "GPS Road-Trip Narrator \u2022 Flutter & Gemini API",
-      "installs": 38,
-      "installs_label": "Alpha Roadtrippers & Drivers",
+      "installs": 14,
+      "installs_label": "Closed Testing Cohort",
       "active_now": 0,
       "dau": 1,
       "paying": 0,
@@ -145,27 +145,27 @@
       "is_monetized": true,
       "pricing_model": "RevenueCat Pass",
       "monetization_desc": "Offline national park audio packs and annual companion pass via RevenueCat.",
-      "core_action_name": "Driver Profiles",
-      "core_action_count": 38,
-      "core_action_desc": "Dynamic GPS coordinate listeners & automated folklore narration streams.",
+      "core_action_name": "Test Drives Run",
+      "core_action_count": 14,
+      "core_action_desc": "14 closed beta road-trip routes tested across national park GPS checkpoints.",
       "ai_cost": "$1.85",
       "ai_desc": "Gemini 2.5 Flash audio streaming throttled by velocity and coordinate deltas.",
       "insight": "Geofencing optimization: Triggering narration on distance deltas cut API token burn by 70%.",
       "funnel": [
         {
-          "stage": "Driver Signups & Mobile Installs",
-          "count": 38,
+          "stage": "Closed Beta Testers Enrolled",
+          "count": 14,
           "pct": "100%"
         },
         {
           "stage": "GPS Stream Permission Allowed",
-          "count": 34,
-          "pct": "89.5%"
+          "count": 14,
+          "pct": "100.0%"
         },
         {
           "stage": "First Road-trip Narration Completed",
-          "count": 26,
-          "pct": "68.4%"
+          "count": 12,
+          "pct": "85.7%"
         },
         {
           "stage": "RevenueCat Audio Pass Purchases",
@@ -182,12 +182,12 @@
       "installs_label": "Registered Tour Guides",
       "active_now": 0,
       "dau": 0,
-      "paying": 0,
-      "revenue": "$0 (Pre-revenue)",
-      "conversion_rate": "0.0%",
+      "paying": 1,
+      "revenue": "$4.99/mo",
+      "conversion_rate": "11.1%",
       "is_monetized": true,
-      "pricing_model": "Pro Tour License",
-      "monetization_desc": "Unlimited offline tour routes and serverless speech quota upgrades.",
+      "pricing_model": "Pro Guide ($4.99/mo)",
+      "monetization_desc": "Pro Tour Guide subscription ($4.99/mo) via Stripe Checkout (1 verified test subscriber).",
       "core_action_name": "Speech Sessions",
       "core_action_count": 3,
       "core_action_desc": "3 speech recognition sessions logged via Web Speech API & Gemini proxy.",
@@ -212,8 +212,8 @@
         },
         {
           "stage": "Pro Tour License Purchases",
-          "count": 0,
-          "pct": "0.0%"
+          "count": 1,
+          "pct": "11.1%"
         }
       ]
     },

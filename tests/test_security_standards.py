@@ -93,14 +93,22 @@ class TestSecurityStandards(unittest.TestCase):
         self.assertEqual(dawn_breakers['paying'], 0, "Dawn-Breakers must have 0 paying users")
         self.assertEqual(dawn_breakers['revenue'], "$0", "Dawn-Breakers revenue must be $0")
 
-        # TerraCatch is Google Play
+        # TerraCatch is Google Play with verified test purchase
         self.assertIn("Google Play", apps['terracatch']['pricing_model'])
+        self.assertEqual(apps['terracatch']['paying'], 1, "TerraCatch must reflect 1 verified test purchase")
+        self.assertIn("$2.99", apps['terracatch']['revenue'])
 
-        # Pingquest is Stripe
+        # Dalil Notecard has 1 verified test subscriber
+        self.assertEqual(apps['dalil']['paying'], 1, "Dalil Notecard must reflect 1 verified test subscriber")
+        self.assertEqual(apps['dalil']['revenue'], "$4.99/mo")
+
+        # Pingquest AI cost reflects image generation
         self.assertIn("Stripe", apps['pingquest']['pricing_model'])
+        self.assertEqual(apps['pingquest']['ai_cost'], "$4.20", "Pingquest AI cost must reflect image generation")
 
-        # Wayfare Guide is RevenueCat
+        # Wayfare Guide is RevenueCat with 14 closed testers
         self.assertIn("RevenueCat", apps['guide']['pricing_model'])
+        self.assertEqual(apps['guide']['installs'], 14, "Wayfare Guide must reflect exactly 14 closed beta testers")
 
     def test_client_endpoints_are_safe_and_unauthenticated(self):
         """Verify client code does not transmit sensitive headers or use dangerous write endpoints."""
