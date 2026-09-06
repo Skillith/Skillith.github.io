@@ -561,6 +561,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Allow clicking on any project card directly to open Vitals
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('a') || e.target.closest('.btn-console')) {
+                return;
+            }
+            const vitalsBtn = card.querySelector('.btn-vitals');
+            if (vitalsBtn) {
+                const projectId = vitalsBtn.getAttribute('data-project');
+                openVitalsModal(projectId);
+            }
+        });
+    });
+
     if (vitalsModalClose) {
         vitalsModalClose.addEventListener('click', closeVitalsModal);
     }
