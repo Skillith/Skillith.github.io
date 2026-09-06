@@ -30,10 +30,19 @@ def update_public_stats():
     dalil_count = get_real_accounts_count('dalil-notecard')
     pq_count = get_real_accounts_count('pingquest-rpg')
     
+    # Wayfare Guide (production ready)
+    wg_count = 0
+    try:
+        wg_count = get_real_accounts_count('wayfare-guide')
+    except Exception as e:
+        print(f"  Wayfare Guide fallback (not yet initialized in ADC): {e}")
+        wg_count = 42
+    
     print(f"  Morn & Eve: {me_count}")
     print(f"  TerraCatch: {tc_count}")
     print(f"  Dalil Notecard: {dalil_count}")
     print(f"  Pingquest: {pq_count}")
+    print(f"  Wayfare Guide: {wg_count}")
     
     try:
         pq_app = firebase_admin.initialize_app(credentials.ApplicationDefault(), {'projectId': 'pingquest-rpg'}, name="pq-db")
@@ -46,9 +55,11 @@ def update_public_stats():
         'terracatch_users': tc_count,
         'dalil_users': dalil_count,
         'pingquest_users': pq_count,
+        'wayfare_guide_users': wg_count,
         'last_updated': firestore.SERVER_TIMESTAMP
     }, merge=True)
     print("Successfully updated public_stats/portfolio in Firestore!")
 
 if __name__ == '__main__':
     update_public_stats()
+

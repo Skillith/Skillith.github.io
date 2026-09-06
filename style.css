@@ -436,6 +436,7 @@ header {
     border-radius: 20px;
     font-family: var(--font-mono);
     letter-spacing: -0.2px;
+    cursor: pointer;
     transition: all var(--transition-speed);
 }
 
@@ -538,13 +539,47 @@ header {
     pointer-events: none;
 }
 
-.btn-console {
+.project-action-btns {
     margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.btn-vitals {
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    color: var(--accent-cyan);
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    transition: all var(--transition-speed);
+}
+
+.btn-vitals:hover {
+    background: var(--accent-cyan);
+    color: #080b11;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 4px 12px var(--accent-cyan-glow);
+}
+
+.btn-vitals svg {
+    width: 12px;
+    height: 12px;
+}
+
+.btn-console {
     background: rgba(139, 92, 246, 0.1);
     border: 1px solid rgba(139, 92, 246, 0.2);
     color: var(--accent-purple);
     font-size: 0.75rem;
-    padding: 0.35rem 0.75rem;
+    padding: 0.35rem 0.65rem;
     border-radius: 6px;
     display: inline-flex;
     align-items: center;
@@ -670,6 +705,429 @@ header {
 
 .term-log-info {
     color: #3b82f6;
+}
+
+/* App Creator Vitals & Funnel Modal */
+.vitals-window {
+    width: 100%;
+    max-width: 780px;
+    background: rgba(13, 17, 26, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 40px rgba(6, 182, 212, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    transform: scale(0.95);
+    transition: transform var(--transition-speed);
+}
+
+.modal-overlay.active .vitals-window {
+    transform: scale(1);
+}
+
+.vitals-header {
+    background: #111622;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vitals-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.vitals-live-radar {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radar-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent-green);
+    box-shadow: 0 0 10px var(--accent-green);
+    z-index: 2;
+}
+
+.radar-ping {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--accent-green);
+    opacity: 0.75;
+    animation: radar-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes radar-ping {
+    75%, 100% {
+        transform: scale(2.4);
+        opacity: 0;
+    }
+}
+
+.vitals-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.vitals-app-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.vitals-status-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 20px;
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-green);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    font-family: var(--font-mono);
+}
+
+.vitals-app-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.vitals-close-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.vitals-close-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+.vitals-close-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.vitals-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Top Pulse Banner */
+.vitals-pulse-banner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.85rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.pulse-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.pulse-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.pulse-label svg {
+    width: 13px;
+    height: 13px;
+    color: var(--accent-cyan);
+}
+
+.pulse-val-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.pulse-number {
+    font-size: 1.45rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.pulse-sub {
+    font-size: 0.7rem;
+    color: var(--accent-cyan);
+    font-family: var(--font-mono);
+}
+
+/* Funnel Section */
+.vitals-section {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.vitals-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.vitals-section-header h4 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.vitals-section-header h4 svg {
+    width: 16px;
+    height: 16px;
+    color: var(--accent-purple);
+}
+
+.vitals-tag-info {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+}
+
+.vitals-funnel-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.funnel-step-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.funnel-step-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.funnel-step-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.funnel-step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.2);
+    color: var(--accent-purple);
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+}
+
+.funnel-step-name {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.funnel-step-nums-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+}
+
+.funnel-step-count {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.funnel-step-pct {
+    color: var(--accent-cyan);
+    font-size: 0.75rem;
+}
+
+.funnel-bar-track {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.funnel-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+    border-radius: 6px;
+    transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.funnel-bar-fill.step-last {
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green));
+}
+
+/* Deep-Dive Grid */
+.vitals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.vital-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.vital-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vital-card-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.vital-card-title svg {
+    width: 14px;
+    height: 14px;
+}
+
+.vital-badge {
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--accent-purple);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.vital-badge.green {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-green);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.vital-badge.purple {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--accent-purple);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.vital-card-big {
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.vital-card-desc {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* Insight Box */
+.vitals-insight-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 10px;
+    padding: 0.85rem 1.1rem;
+    font-size: 0.82rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.vitals-insight-box .insight-icon {
+    width: 18px;
+    height: 18px;
+    color: #f59e0b;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Responsiveness for Vitals */
+@media (max-width: 768px) {
+    .vitals-pulse-banner {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .vitals-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .vitals-pulse-banner {
+        grid-template-columns: 1fr;
+    }
+    .vitals-window {
+        max-height: 95vh;
+    }
+    .vitals-body {
+        padding: 1rem;
+    }
 }
 
 /* Contact Section */
