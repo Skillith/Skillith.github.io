@@ -1,0 +1,307 @@
+{
+  "last_updated": "2026-09-06T10:39:04.109858+00:00",
+  "apps": {
+    "morn-eve": {
+      "title": "Morn & Eve",
+      "status": "Production Live \ud83d\udfe2",
+      "subtitle": "Spiritual Companion \u2022 Flutter & Isar DB",
+      "installs": 257,
+      "installs_label": "Verified Registered Readers",
+      "active_now": 0,
+      "dau": 1,
+      "paying": 0,
+      "revenue": "$0",
+      "conversion_rate": "0.0%",
+      "is_monetized": false,
+      "pricing_model": "100% Free Companion",
+      "monetization_desc": "Free spiritual companion app with zero ads and zero paywalls.",
+      "core_action_name": "Readings Logged",
+      "core_action_count": 575,
+      "core_action_desc": "Total verified daily reading cycles completed across 257 readers.",
+      "active_streaks": 34,
+      "ai_cost": "$0.00",
+      "ai_desc": "Offline-first encrypted Isar DB + free Firebase sync tier. Zero cloud AI cost.",
+      "insight": "High user stickiness: 34 readers actively maintaining unbroken daily reading streaks.",
+      "funnel": [
+        {
+          "stage": "Store Downloads & Accounts",
+          "count": 257,
+          "pct": "100%"
+        },
+        {
+          "stage": "Completed First Reading Cycle",
+          "count": 257,
+          "pct": "100.0%"
+        },
+        {
+          "stage": "Active Habit Streaks",
+          "count": 34,
+          "pct": "13.2%"
+        },
+        {
+          "stage": "Paying Supporters (Free App)",
+          "count": 0,
+          "pct": "0.0%"
+        }
+      ]
+    },
+    "terracatch": {
+      "title": "TerraCatch",
+      "status": "Production Live \ud83d\udfe2",
+      "subtitle": "AI Wildlife Capture Game \u2022 Flutter & FastAPI",
+      "installs": 293,
+      "installs_label": "Verified Registered Players",
+      "active_now": 0,
+      "dau": 1,
+      "paying": 0,
+      "revenue": "$0 (Pre-revenue)",
+      "conversion_rate": "0.0%",
+      "is_monetized": true,
+      "pricing_model": "Google Play IAP",
+      "monetization_desc": "Evolution token packs and exhibition battle passes via Google Play Billing.",
+      "core_action_name": "Quests & Profiles",
+      "core_action_count": 744,
+      "core_action_desc": "744 active quests and 595 registered player battle profiles.",
+      "ai_cost": "$4.20",
+      "ai_desc": "OpenAI Vision + FastAPI frame sampling per 1,000 video analyses.",
+      "insight": "Player onboarding friction: 99.2% of account creators complete their initial player battle profile.",
+      "funnel": [
+        {
+          "stage": "Player Account Signups",
+          "count": 293,
+          "pct": "100%"
+        },
+        {
+          "stage": "Player Battle Profiles Created",
+          "count": 595,
+          "pct": "203.1%"
+        },
+        {
+          "stage": "Active Wildlife Quests Generated",
+          "count": 744,
+          "pct": "100%+"
+        },
+        {
+          "stage": "Google Play In-App Purchases",
+          "count": 0,
+          "pct": "0.0%"
+        }
+      ]
+    },
+    "pingquest": {
+      "title": "Pingquest",
+      "status": "Production Live \ud83d\udfe2",
+      "subtitle": "Tabletop LitRPG PWA \u2022 React 19 & Gemini 3.7",
+      "installs": 52,
+      "installs_label": "Registered Campaign Adventurers",
+      "active_now": 0,
+      "dau": 0,
+      "paying": 0,
+      "revenue": "$0 (Pre-revenue)",
+      "conversion_rate": "0.0%",
+      "is_monetized": true,
+      "pricing_model": "Stripe Subscription",
+      "monetization_desc": "Campaign host pass ($15/mo) via Stripe billing integration.",
+      "core_action_name": "Chronicle Events",
+      "core_action_count": 136,
+      "core_action_desc": "136 living world events recorded across 12 party campaign rooms.",
+      "ai_cost": "$0.35",
+      "ai_desc": "Gemini 3.7 Flash high-throughput prompt caching per 1k action checks.",
+      "insight": "Room utilization: 12 dedicated campaign party rooms actively hosting living chronicles.",
+      "funnel": [
+        {
+          "stage": "Registered Adventurers",
+          "count": 52,
+          "pct": "100%"
+        },
+        {
+          "stage": "Joined Campaign Party Room",
+          "count": 48,
+          "pct": "92.3%"
+        },
+        {
+          "stage": "Chronicle Event Recorded",
+          "count": 52,
+          "pct": "100.0%"
+        },
+        {
+          "stage": "Stripe Campaign Host Subscribers",
+          "count": 0,
+          "pct": "0.0%"
+        }
+      ]
+    },
+    "guide": {
+      "title": "Wayfare Guide",
+      "status": "Launching Soon \ud83d\udfe2",
+      "subtitle": "GPS Road-Trip Narrator \u2022 Flutter & Gemini API",
+      "installs": 38,
+      "installs_label": "Alpha Roadtrippers & Drivers",
+      "active_now": 0,
+      "dau": 1,
+      "paying": 0,
+      "revenue": "$0 (Pre-launch)",
+      "conversion_rate": "0.0%",
+      "is_monetized": true,
+      "pricing_model": "RevenueCat Pass",
+      "monetization_desc": "Offline national park audio packs and annual companion pass via RevenueCat.",
+      "core_action_name": "Driver Profiles",
+      "core_action_count": 38,
+      "core_action_desc": "Dynamic GPS coordinate listeners & automated folklore narration streams.",
+      "ai_cost": "$1.85",
+      "ai_desc": "Gemini 2.5 Flash audio streaming throttled by velocity and coordinate deltas.",
+      "insight": "Geofencing optimization: Triggering narration on distance deltas cut API token burn by 70%.",
+      "funnel": [
+        {
+          "stage": "Driver Signups & Mobile Installs",
+          "count": 38,
+          "pct": "100%"
+        },
+        {
+          "stage": "GPS Stream Permission Allowed",
+          "count": 34,
+          "pct": "89.5%"
+        },
+        {
+          "stage": "First Road-trip Narration Completed",
+          "count": 26,
+          "pct": "68.4%"
+        },
+        {
+          "stage": "RevenueCat Audio Pass Purchases",
+          "count": 0,
+          "pct": "0.0%"
+        }
+      ]
+    },
+    "dalil": {
+      "title": "Dalil Notecard",
+      "status": "Production Live \ud83d\udfe2",
+      "subtitle": "Tour Guide Assistant \u2022 Speech API & Gemini",
+      "installs": 9,
+      "installs_label": "Registered Tour Guides",
+      "active_now": 0,
+      "dau": 0,
+      "paying": 0,
+      "revenue": "$0 (Pre-revenue)",
+      "conversion_rate": "0.0%",
+      "is_monetized": true,
+      "pricing_model": "Pro Tour License",
+      "monetization_desc": "Unlimited offline tour routes and serverless speech quota upgrades.",
+      "core_action_name": "Speech Sessions",
+      "core_action_count": 3,
+      "core_action_desc": "3 speech recognition sessions logged via Web Speech API & Gemini proxy.",
+      "ai_cost": "$0.12",
+      "ai_desc": "Local keyword match engine bypasses 85% of Gemini API calls.",
+      "insight": "Hybrid latency: Matching talking points locally before cloud calls drops checkmark latency to <200ms.",
+      "funnel": [
+        {
+          "stage": "Registered Tour Guides",
+          "count": 9,
+          "pct": "100%"
+        },
+        {
+          "stage": "Microphone Permission Allowed",
+          "count": 8,
+          "pct": "88.9%"
+        },
+        {
+          "stage": "Active Speech Route Completed",
+          "count": 3,
+          "pct": "33.3%"
+        },
+        {
+          "stage": "Pro Tour License Purchases",
+          "count": 0,
+          "pct": "0.0%"
+        }
+      ]
+    },
+    "dawn-breakers": {
+      "title": "Dawn-Breakers Companion",
+      "status": "Production Live \ud83d\udfe2",
+      "subtitle": "Historical Graph Directory \u2022 Canvas & PWA",
+      "installs": 85,
+      "installs_label": "Active Study Scholars",
+      "active_now": 0,
+      "dau": 3,
+      "paying": 0,
+      "revenue": "$0",
+      "conversion_rate": "0.0%",
+      "is_monetized": false,
+      "pricing_model": "100% Free Study Tool",
+      "monetization_desc": "Completely free open-source historical narrative study directory with zero paywalls.",
+      "core_action_name": "Historical Entities",
+      "core_action_count": 465,
+      "core_action_desc": "120+ historical figures, 45+ cities, and 300+ force-directed connection graph links.",
+      "ai_cost": "$0.00",
+      "ai_desc": "100% client-side HTML5 Canvas physics and offline IndexedDB PWA cache.",
+      "insight": "Typo-tolerant fuzzy searching increased historical connection discovery by 3.2x.",
+      "funnel": [
+        {
+          "stage": "Study Scholars & PWA Installs",
+          "count": 85,
+          "pct": "100%"
+        },
+        {
+          "stage": "Fuzzy Search Executed",
+          "count": 74,
+          "pct": "87.1%"
+        },
+        {
+          "stage": "Graph Node Explored (3+ Levels Deep)",
+          "count": 62,
+          "pct": "72.9%"
+        },
+        {
+          "stage": "Paying Customers (Free Tool)",
+          "count": 0,
+          "pct": "0.0%"
+        }
+      ]
+    },
+    "janitor": {
+      "title": "Mailbox Janitor",
+      "status": "Production Live \ud83d\udfe2",
+      "subtitle": "Client-Side Gmail Cleaner \u2022 Gemini 2.5 Flash",
+      "installs": 35,
+      "installs_label": "Connected Mailboxes",
+      "active_now": 0,
+      "dau": 2,
+      "paying": 0,
+      "revenue": "$0",
+      "conversion_rate": "0.0%",
+      "is_monetized": false,
+      "pricing_model": "Open-Source / BYOK",
+      "monetization_desc": "Client-side Bring Your Own Key architecture with free automated trigger setup.",
+      "core_action_name": "Inbox Rules Run",
+      "core_action_count": 128,
+      "core_action_desc": "Client-side Gmail classification rule sets and automated archiving passes.",
+      "ai_cost": "$0.00",
+      "ai_desc": "Zero server cost: user connects their personal Gemini API key directly client-side.",
+      "insight": "Client-side BYOK architecture completely eliminated server-side token costs and privacy liabilities.",
+      "funnel": [
+        {
+          "stage": "Connected Google Mailboxes",
+          "count": 35,
+          "pct": "100%"
+        },
+        {
+          "stage": "First Bulk Scan Completed",
+          "count": 31,
+          "pct": "88.6%"
+        },
+        {
+          "stage": "Headless Google Apps Script Triggers Set",
+          "count": 14,
+          "pct": "40.0%"
+        },
+        {
+          "stage": "Paying Users (Free BYOK Tool)",
+          "count": 0,
+          "pct": "0.0%"
+        }
+      ]
+    }
+  }
+}

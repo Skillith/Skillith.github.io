@@ -1,0 +1,23 @@
+﻿# Environment & Secrets
+.env
+.env.*
+*.env
+*.pem
+*.key
+*serviceAccount*.json
+*credentials*.json
+client_secret*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.class
+.venv/
+venv/
+ENV/
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

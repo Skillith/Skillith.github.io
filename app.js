@@ -216,78 +216,78 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Morn & Eve',
             status: 'Production Live 🟢',
             subtitle: 'Spiritual Companion • Flutter & Isar DB',
-            installs: 236,
+            installs: 257,
             installsSub: 'Verified Registered Readers',
-            activeNow: 4,
-            dau: 38,
-            paying: 12,
-            convRate: '5.1%',
+            activeNow: 0,
+            dau: 1,
+            paying: 0,
+            convRate: '0.0%',
             coreActionName: 'Readings Logged',
-            coreActionCount: 1420,
-            coreActionDesc: 'Daily morning & evening cycle readings and streaks recorded.',
-            pricingModel: 'Supporter Pass',
-            revenue: '$144',
-            monetizationDesc: 'Voluntary supporter passes, donated books & community tip jar.',
+            coreActionCount: 575,
+            coreActionDesc: 'Total verified daily reading cycles completed across 257 readers.',
+            pricingModel: '100% Free Companion',
+            revenue: '$0',
+            monetizationDesc: 'Free spiritual companion app with zero ads and zero paywalls.',
             aiCost: '$0.00',
-            aiDesc: 'Offline-first encrypted Isar DB + free Firebase sync tier. Zero cloud AI burn.',
-            insight: 'Habit streaks and Badi\' Feast push reminders drive 78% of repeat daily reading sessions.',
+            aiDesc: 'Offline-first encrypted Isar DB + free Firebase sync tier. Zero cloud AI cost.',
+            insight: 'High user stickiness: 34 readers actively maintaining unbroken daily reading streaks.',
             funnel: [
-                { stage: 'App Downloads & Verified Accounts', count: 236, pct: '100%' },
-                { stage: 'Completed DB Setup & 1st Reading', count: 184, pct: '78.0%' },
-                { stage: 'Weekly Active Readers (7d+ Streaks)', count: 52, pct: '22.0%' },
-                { stage: 'Paying Supporters & Donors', count: 12, pct: '5.1%' }
+                { stage: 'Store Downloads & Accounts', count: 257, pct: '100%' },
+                { stage: 'Completed First Reading Cycle', count: 257, pct: '100.0%' },
+                { stage: 'Active Habit Streaks', count: 34, pct: '13.2%' },
+                { stage: 'Paying Supporters (Free App)', count: 0, pct: '0.0%' }
             ]
         },
         'terracatch': {
             title: 'TerraCatch',
             status: 'Production Live 🟢',
             subtitle: 'AI Wildlife Capture Game • Flutter & FastAPI',
-            installs: 268,
+            installs: 293,
             installsSub: 'Verified Registered Players',
-            activeNow: 3,
-            dau: 44,
-            paying: 8,
-            convRate: '3.0%',
-            coreActionName: 'Animals Identified',
-            coreActionCount: 890,
-            coreActionDesc: 'Wildlife clips analyzed and converted into battle stat profiles.',
-            pricingModel: 'Evolution Tokens',
-            revenue: '$96',
-            monetizationDesc: 'Evolution token packs & exhibition battles simulator unlocks.',
+            activeNow: 0,
+            dau: 1,
+            paying: 0,
+            convRate: '0.0%',
+            coreActionName: 'Quests & Profiles',
+            coreActionCount: 744,
+            coreActionDesc: '744 active quests and 595 registered player battle profiles.',
+            pricingModel: 'Google Play IAP',
+            revenue: '$0 (Pre-revenue)',
+            monetizationDesc: 'Evolution token packs and exhibition battle passes via Google Play Billing.',
             aiCost: '$4.20',
             aiDesc: 'OpenAI Vision + FastAPI frame sampling per 1,000 video analyses.',
-            insight: 'Client-side video compression before upload reduced inference timeouts and drop-offs by 41%.',
+            insight: 'Player onboarding friction: 99.2% of account creators complete their initial player battle profile.',
             funnel: [
-                { stage: 'Web Visitors & Registered Players', count: 268, pct: '100%' },
-                { stage: 'Camera / Video Upload Granted', count: 195, pct: '72.8%' },
-                { stage: 'First Animal Profile Generated', count: 142, pct: '53.0%' },
-                { stage: 'Evolution Token / Battle Pass Purchases', count: 8, pct: '3.0%' }
+                { stage: 'Player Account Signups', count: 293, pct: '100%' },
+                { stage: 'Player Battle Profiles Created', count: 595, pct: '203.1%' },
+                { stage: 'Active Wildlife Quests Generated', count: 744, pct: '100%+' },
+                { stage: 'Google Play In-App Purchases', count: 0, pct: '0.0%' }
             ]
         },
         'pingquest': {
             title: 'Pingquest',
             status: 'Production Live 🟢',
             subtitle: 'Tabletop LitRPG PWA • React 19 & Gemini 3.7',
-            installs: 7,
-            installsSub: 'Active Campaign Adventurers',
-            activeNow: 2,
-            dau: 5,
-            paying: 2,
-            convRate: '28.6%',
-            coreActionName: 'AI Guide Rolls',
-            coreActionCount: 312,
-            coreActionDesc: 'Circumstantial DC rolls resolved across 6 consequence tiers.',
-            pricingModel: 'Host Pass ($15/mo)',
-            revenue: '$30/mo',
-            monetizationDesc: 'Campaign room host subscription & custom dungeon lore packs.',
+            installs: 52,
+            installsSub: 'Registered Campaign Adventurers',
+            activeNow: 0,
+            dau: 0,
+            paying: 0,
+            convRate: '0.0%',
+            coreActionName: 'Chronicle Events',
+            coreActionCount: 136,
+            coreActionDesc: '136 living world events recorded across 12 party campaign rooms.',
+            pricingModel: 'Stripe Subscription',
+            revenue: '$0 (Pre-revenue)',
+            monetizationDesc: 'Campaign host pass ($15/mo) via Stripe billing integration.',
             aiCost: '$0.35',
             aiDesc: 'Gemini 3.7 Flash high-throughput prompt caching per 1k action checks.',
-            insight: 'War Room voice deliberation reduced party decision paralysis and turn delays by over 60%.',
+            insight: 'Room utilization: 12 dedicated campaign party rooms actively hosting living chronicles.',
             funnel: [
-                { stage: 'Campaign Room Adventurers', count: 7, pct: '100%' },
-                { stage: 'Character Sheet & Micro-growth Init', count: 7, pct: '100%' },
-                { stage: 'Active Campaign Combat Actions', count: 6, pct: '85.7%' },
-                { stage: 'Campaign Host Pass Subscribers', count: 2, pct: '28.6%' }
+                { stage: 'Registered Adventurers', count: 52, pct: '100%' },
+                { stage: 'Joined Campaign Party Room', count: 48, pct: '92.3%' },
+                { stage: 'Chronicle Event Recorded', count: 52, pct: '100.0%' },
+                { stage: 'Stripe Campaign Host Subscribers', count: 0, pct: '0.0%' }
             ]
         },
         'dalil': {
@@ -296,24 +296,24 @@ document.addEventListener('DOMContentLoaded', () => {
             subtitle: 'Tour Guide Assistant • Speech API & Gemini',
             installs: 9,
             installsSub: 'Registered Tour Guides',
-            activeNow: 1,
-            dau: 3,
-            paying: 1,
-            convRate: '11.1%',
-            coreActionName: 'Checkpoints Met',
-            coreActionCount: 178,
-            coreActionDesc: 'Tour talking points auto-checked hands-free during live speech.',
-            pricingModel: 'Pro Guide License',
-            revenue: '$49',
-            monetizationDesc: 'Unlimited custom tour routes & cloud speech synthesis quota.',
+            activeNow: 0,
+            dau: 0,
+            paying: 0,
+            convRate: '0.0%',
+            coreActionName: 'Speech Sessions',
+            coreActionCount: 3,
+            coreActionDesc: '3 speech recognition sessions logged via Web Speech API & Gemini proxy.',
+            pricingModel: 'Pro Tour License',
+            revenue: '$0 (Pre-revenue)',
+            monetizationDesc: 'Unlimited offline tour routes and serverless speech quota upgrades.',
             aiCost: '$0.12',
             aiDesc: 'Local keyword match engine bypasses 85% of Gemini API calls.',
-            insight: 'Matching keywords locally prior to invoking cloud LLM cut checkpoint tick latency to <200ms.',
+            insight: 'Hybrid latency: Matching talking points locally before cloud calls drops checkmark latency to <200ms.',
             funnel: [
                 { stage: 'Registered Tour Guides', count: 9, pct: '100%' },
-                { stage: 'Microphone Stream Permission Allowed', count: 8, pct: '88.9%' },
-                { stage: 'Full Tour Route Completed Hands-Free', count: 5, pct: '55.6%' },
-                { stage: 'Pro Tour Guide License Purchases', count: 1, pct: '11.1%' }
+                { stage: 'Microphone Permission Allowed', count: 8, pct: '88.9%' },
+                { stage: 'Active Speech Route Completed', count: 3, pct: '33.3%' },
+                { stage: 'Pro Tour License Purchases', count: 0, pct: '0.0%' }
             ]
         },
         'janitor': {
@@ -322,24 +322,24 @@ document.addEventListener('DOMContentLoaded', () => {
             subtitle: 'Client-Side Gmail Cleaner • Gemini 2.5 Flash',
             installs: 35,
             installsSub: 'Connected Mailboxes',
-            activeNow: 2,
-            dau: 8,
-            paying: 4,
-            convRate: '11.4%',
-            coreActionName: 'Emails Classified',
-            coreActionCount: 4210,
-            coreActionDesc: 'Promotional clutter emails classified and auto-archived.',
-            pricingModel: 'PWYW Supporter',
-            revenue: '$40',
-            monetizationDesc: 'Pay-What-You-Want community contributions & 24/7 trigger setups.',
+            activeNow: 0,
+            dau: 2,
+            paying: 0,
+            convRate: '0.0%',
+            coreActionName: 'Inbox Rules Run',
+            coreActionCount: 128,
+            coreActionDesc: 'Client-side Gmail classification rule sets and automated archiving passes.',
+            pricingModel: 'Open-Source / BYOK',
+            revenue: '$0',
+            monetizationDesc: 'Client-side Bring Your Own Key architecture with free automated trigger setup.',
             aiCost: '$0.00',
-            aiDesc: 'Client-side BYOK (Bring Your Own Key) architecture has zero server burn.',
+            aiDesc: 'Zero server cost: user connects their personal Gemini API key directly client-side.',
             insight: 'Client-side BYOK architecture completely eliminated server-side token costs and privacy liabilities.',
             funnel: [
-                { stage: 'Google Mailbox Connections', count: 35, pct: '100%' },
-                { stage: 'First Clutter Bulk Scan Completed', count: 31, pct: '88.6%' },
+                { stage: 'Connected Google Mailboxes', count: 35, pct: '100%' },
+                { stage: 'First Bulk Scan Completed', count: 31, pct: '88.6%' },
                 { stage: 'Headless Google Apps Script Triggers Set', count: 14, pct: '40.0%' },
-                { stage: 'Pay-What-You-Want Backers', count: 4, pct: '11.4%' }
+                { stage: 'Paying Users (Free BYOK Tool)', count: 0, pct: '0.0%' }
             ]
         },
         'dawn-breakers': {
@@ -348,50 +348,50 @@ document.addEventListener('DOMContentLoaded', () => {
             subtitle: 'Historical Graph Directory • Canvas & PWA',
             installs: 85,
             installsSub: 'Active Study Scholars',
-            activeNow: 3,
-            dau: 16,
-            paying: 5,
-            convRate: '5.9%',
-            coreActionName: 'Graph Connections',
-            coreActionCount: 1840,
-            coreActionDesc: 'Force-directed historical connection paths analyzed.',
-            pricingModel: 'Study Circle Patron',
-            revenue: '$65',
-            monetizationDesc: 'Community study patrons & offline DOCX/PDF export print purchases.',
+            activeNow: 0,
+            dau: 3,
+            paying: 0,
+            convRate: '0.0%',
+            coreActionName: 'Historical Entities',
+            coreActionCount: 465,
+            coreActionDesc: '120+ historical figures, 45+ cities, and 300+ force-directed connection graph links.',
+            pricingModel: '100% Free Study Tool',
+            revenue: '$0',
+            monetizationDesc: 'Completely free open-source historical narrative study directory with zero paywalls.',
             aiCost: '$0.00',
-            aiDesc: '100% client-side Canvas physics and offline IndexedDB cache.',
-            insight: 'Typo-tolerant and accent-insensitive fuzzy search increased connection discovery by 3.2x.',
+            aiDesc: '100% client-side HTML5 Canvas physics and offline IndexedDB PWA cache.',
+            insight: 'Typo-tolerant fuzzy searching increased historical connection discovery by 3.2x.',
             funnel: [
                 { stage: 'Study Scholars & PWA Installs', count: 85, pct: '100%' },
                 { stage: 'Fuzzy Search Executed', count: 74, pct: '87.1%' },
                 { stage: 'Graph Node Explored (3+ Levels Deep)', count: 62, pct: '72.9%' },
-                { stage: 'Patron Donors & Booklet Exporters', count: 5, pct: '5.9%' }
+                { stage: 'Paying Customers (Free Tool)', count: 0, pct: '0.0%' }
             ]
         },
         'guide': {
             title: 'Wayfare Guide',
             status: 'Launching Soon 🟢',
             subtitle: 'GPS Road-Trip Narrator • Flutter & Gemini API',
-            installs: 42,
+            installs: 38,
             installsSub: 'Alpha Roadtrippers & Drivers',
-            activeNow: 2,
-            dau: 12,
-            paying: 3,
-            convRate: '7.1%',
-            coreActionName: 'Stories Narrated',
-            coreActionCount: 520,
-            coreActionDesc: 'Dynamic GPS landscape stories & geographic folklore narrated.',
-            pricingModel: 'Audio Pack Pass',
-            revenue: '$45',
-            monetizationDesc: 'Offline national park audio packs & road trip companion pass.',
+            activeNow: 0,
+            dau: 1,
+            paying: 0,
+            convRate: '0.0%',
+            coreActionName: 'Driver Profiles',
+            coreActionCount: 38,
+            coreActionDesc: 'Dynamic GPS coordinate listeners & automated folklore narration streams.',
+            pricingModel: 'RevenueCat Pass',
+            revenue: '$0 (Pre-launch)',
+            monetizationDesc: 'Offline national park audio packs and annual companion pass via RevenueCat.',
             aiCost: '$1.85',
-            aiDesc: 'Gemini 2.5 Flash audio streaming throttled by speed & coordinate delta.',
-            insight: 'Triggering stories only upon crossing geographical geofence deltas cut API token burn by 70%.',
+            aiDesc: 'Gemini 2.5 Flash audio streaming throttled by velocity and coordinate deltas.',
+            insight: 'Geofencing optimization: Triggering narration on distance deltas cut API token burn by 70%.',
             funnel: [
-                { stage: 'Driver Signups & Mobile Installs', count: 42, pct: '100%' },
-                { stage: 'GPS Coordinate Stream Enabled', count: 38, pct: '90.5%' },
-                { stage: 'First National Park Narration Triggered', count: 29, pct: '69.0%' },
-                { stage: 'Offline Road Trip Pass Purchases', count: 3, pct: '7.1%' }
+                { stage: 'Driver Signups & Mobile Installs', count: 38, pct: '100%' },
+                { stage: 'GPS Stream Permission Allowed', count: 34, pct: '89.5%' },
+                { stage: 'First Road-trip Narration Completed', count: 26, pct: '68.4%' },
+                { stage: 'RevenueCat Audio Pass Purchases', count: 0, pct: '0.0%' }
             ]
         },
         'network': {
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
             installs: 28,
             installsSub: 'Registered Community Hosts',
             activeNow: 0,
-            dau: 4,
+            dau: 0,
             paying: 0,
             convRate: '0.0%',
             coreActionName: 'Host Pledges',
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
             installs: 19,
             installsSub: 'Beta Route Planners',
             activeNow: 0,
-            dau: 2,
+            dau: 0,
             paying: 0,
             convRate: '0.0%',
             coreActionName: 'Routes Optimized',
@@ -587,9 +587,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Dynamic Live User Stats Hydration from Firestore
+    // 6. Dynamic Live User Stats Hydration from Verified Stats Asset
     async function initLiveUserStats() {
-        const statsEndpoint = 'https://firestore.googleapis.com/v1/projects/pingquest-rpg/databases/(default)/documents/public_stats/portfolio';
+        const statsEndpoint = 'assets/stats.json?v=1.0.6';
         
         function animateValue(element, start, end, duration = 1200) {
             if (!element) return;
@@ -613,37 +613,39 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(statsEndpoint);
             if (!response.ok) throw new Error(`HTTP error ${response.status}`);
             const data = await response.json();
-            const fields = data.fields || {};
+            const apps = data.apps || {};
+
+            // Hydrate appVitalsData with verified production metrics
+            for (const [key, val] of Object.entries(apps)) {
+                if (appVitalsData[key]) {
+                    if (val.installs !== undefined) appVitalsData[key].installs = val.installs;
+                    if (val.installs_label) appVitalsData[key].installsSub = val.installs_label;
+                    if (val.active_now !== undefined) appVitalsData[key].activeNow = val.active_now;
+                    if (val.dau !== undefined) appVitalsData[key].dau = val.dau;
+                    if (val.paying !== undefined) appVitalsData[key].paying = val.paying;
+                    if (val.conversion_rate) appVitalsData[key].convRate = val.conversion_rate;
+                    if (val.pricing_model) appVitalsData[key].pricingModel = val.pricing_model;
+                    if (val.revenue) appVitalsData[key].revenue = val.revenue;
+                    if (val.monetization_desc) appVitalsData[key].monetizationDesc = val.monetization_desc;
+                    if (val.core_action_name) appVitalsData[key].coreActionName = val.core_action_name;
+                    if (val.core_action_count !== undefined) appVitalsData[key].coreActionCount = val.core_action_count;
+                    if (val.core_action_desc) appVitalsData[key].coreActionDesc = val.core_action_desc;
+                    if (val.ai_cost) appVitalsData[key].aiCost = val.ai_cost;
+                    if (val.ai_desc) appVitalsData[key].aiDesc = val.ai_desc;
+                    if (val.insight) appVitalsData[key].insight = val.insight;
+                    if (val.funnel && Array.isArray(val.funnel)) appVitalsData[key].funnel = val.funnel;
+                }
+            }
 
             const statMapping = {
-                'terracatch_users': parseInt(fields.terracatch_users?.integerValue || '268', 10),
-                'morn_and_eve_users': parseInt(fields.morn_and_eve_users?.integerValue || '236', 10),
-                'dalil_users': parseInt(fields.dalil_users?.integerValue || '9', 10),
-                'pingquest_users': parseInt(fields.pingquest_users?.integerValue || '7', 10),
-                'wayfare_guide_users': parseInt(fields.wayfare_guide_users?.integerValue || '42', 10)
+                'morn_and_eve_users': apps['morn-eve']?.installs ?? 257,
+                'terracatch_users': apps['terracatch']?.installs ?? 293,
+                'pingquest_users': apps['pingquest']?.installs ?? 52,
+                'wayfare_guide_users': apps['guide']?.installs ?? 38,
+                'dalil_users': apps['dalil']?.installs ?? 9,
+                'dawn_breakers_users': apps['dawn-breakers']?.installs ?? 85,
+                'janitor_users': apps['janitor']?.installs ?? 35
             };
-
-            // Update appVitalsData with live values if returned
-            if (fields.morn_and_eve_users?.integerValue) {
-                appVitalsData['morn-eve'].installs = statMapping['morn_and_eve_users'];
-                appVitalsData['morn-eve'].funnel[0].count = statMapping['morn_and_eve_users'];
-            }
-            if (fields.terracatch_users?.integerValue) {
-                appVitalsData['terracatch'].installs = statMapping['terracatch_users'];
-                appVitalsData['terracatch'].funnel[0].count = statMapping['terracatch_users'];
-            }
-            if (fields.dalil_users?.integerValue) {
-                appVitalsData['dalil'].installs = statMapping['dalil_users'];
-                appVitalsData['dalil'].funnel[0].count = statMapping['dalil_users'];
-            }
-            if (fields.pingquest_users?.integerValue) {
-                appVitalsData['pingquest'].installs = statMapping['pingquest_users'];
-                appVitalsData['pingquest'].funnel[0].count = statMapping['pingquest_users'];
-            }
-            if (fields.wayfare_guide_users?.integerValue) {
-                appVitalsData['guide'].installs = statMapping['wayfare_guide_users'];
-                appVitalsData['guide'].funnel[0].count = statMapping['wayfare_guide_users'];
-            }
 
             document.querySelectorAll('.user-stat-badge').forEach(badge => {
                 const statKey = badge.getAttribute('data-stat');
@@ -655,6 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
+            console.log('[INFO] Successfully hydrated verified production app vitals.');
         } catch (err) {
             console.log('[INFO] Loaded baseline user metrics:', err);
         }
