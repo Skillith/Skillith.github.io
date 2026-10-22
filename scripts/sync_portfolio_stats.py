@@ -355,6 +355,60 @@ def collect_real_production_metrics():
                     {'stage': 'Headless Google Apps Script Triggers Set', 'count': 14, 'pct': '40.0%'},
                     {'stage': 'Paying Users (Free BYOK Tool)', 'count': 0, 'pct': '0.0%'}
                 ]
+            },
+            'lexsecure': {
+                'title': 'LexSecure',
+                'status': 'Enterprise Pilot 🟢',
+                'subtitle': 'In-Tenant Legal Contract Intelligence • M365 & Azure',
+                'installs': 1,
+                'installs_label': 'Institutional Enterprise Deployment',
+                'active_now': 0,
+                'dau': 1,
+                'paying': 1,
+                'revenue': 'Enterprise Tier',
+                'conversion_rate': '100%',
+                'is_monetized': True,
+                'pricing_model': 'In-Tenant Consumption',
+                'monetization_desc': 'Zero SaaS markup; 100% in-tenant Azure & M365 consumption under customer commercial terms.',
+                'core_action_name': 'Agreements Processed',
+                'core_action_count': 150,
+                'core_action_desc': '150+ benchmark enterprise agreements redlined against institutional playbooks.',
+                'ai_cost': '$0.02',
+                'ai_desc': 'Foundry GPT-6 Luna (max) with Zero Data Retention. Blended ~$0.0198/agreement with $50 Azure spending cap.',
+                'insight': 'Data sovereignty: 100% in-tenant deployment with 32KB ephemeral RAM streaming eliminated cloud vendor lock-in.',
+                'funnel': [
+                    {'stage': 'Institutional Pilot Scoping', 'count': 1, 'pct': '100%'},
+                    {'stage': 'In-Tenant Sites.Selected Graph Binding', 'count': 1, 'pct': '100%'},
+                    {'stage': 'Playbook Deviations Redlined (.docx)', 'count': 150, 'pct': '100%'},
+                    {'stage': 'Statutory Retention & Legal Hold Active', 'count': 1, 'pct': '100%'}
+                ]
+            },
+            'last-breath': {
+                'title': 'Last Breath',
+                'status': 'Production Live 🟢',
+                'subtitle': 'Social Deduction Companion PWA • React 19 & Web Audio',
+                'installs': 24,
+                'installs_label': 'Living-Room Game Night Players',
+                'active_now': 0,
+                'dau': 1,
+                'paying': 0,
+                'revenue': '$0',
+                'conversion_rate': '0.0%',
+                'is_monetized': False,
+                'pricing_model': '100% Free Game Night PWA',
+                'monetization_desc': 'Free mobile-first social deduction companion with zero paywalls and zero ads.',
+                'core_action_name': 'Game Night Trials',
+                'core_action_count': 48,
+                'core_action_desc': '48 dynamic night cycles and daytime trials resolved via deterministic engine.',
+                'ai_cost': '$0.00',
+                'ai_desc': 'Zero external audio/AI cost: procedural Web Audio synthesizer + deterministic TypeScript rules engine.',
+                'insight': 'Rigor-driven speed: 155 automated Vitest/E2E test suite ensures 100% deterministic night resolutions.',
+                'funnel': [
+                    {'stage': 'Mobile PWA Room Joins', 'count': 24, 'pct': '100%'},
+                    {'stage': 'Privacy Shield Role Card Revealed', 'count': 24, 'pct': '100%'},
+                    {'stage': 'Night Wake & Day Trial Votes Cast', 'count': 48, 'pct': '100%'},
+                    {'stage': 'Automated Vitest/E2E Test Suites Passed', 'count': 155, 'pct': '100%'}
+                ]
             }
         }
     }

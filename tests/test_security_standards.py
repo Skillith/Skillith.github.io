@@ -17,6 +17,13 @@ SECRET_PATTERNS = [
     (r"AIzaSy[0-9A-Za-z-_]{33}", "Privileged Google API Key (unrestricted)")
 ]
 
+CONFIDENTIAL_PATTERNS = [
+    (r"lex-demo-2026\.web\.app", "Confidential LexSecure Demo Host URL"),
+    (r"bwc-sharepoint-pilot\.web\.app", "Confidential SharePoint Pilot Host URL"),
+    (r"rg-bwc-legal-ai-pilot", "Confidential Internal Azure Resource Group"),
+    (r"/sites/ISD-Legal-Pilot", "Confidential Internal SharePoint Site Path")
+]
+
 class TestSecurityStandards(unittest.TestCase):
 
     def test_no_private_keys_or_secrets_in_tracked_files(self):
@@ -29,8 +36,8 @@ class TestSecurityStandards(unittest.TestCase):
             abs_path = os.path.join(REPO_ROOT, rel_path)
             if not os.path.isfile(abs_path):
                 continue
-            # Skip binary / image files
-            if rel_path.endswith(('.png', '.jpg', '.jpeg', '.svg', '.ico', '.pdf', '.webp', '.gif')):
+            # Skip binary / image files and test files testing the pattern itself
+            if rel_path.endswith(('.png', '.jpg', '.jpeg', '.svg', '.ico', '.pdf', '.webp', '.gif')) or rel_path.endswith('test_security_standards.py'):
                 continue
 
             with open(abs_path, 'r', encoding='utf-8', errors='ignore') as f:
@@ -42,6 +49,30 @@ class TestSecurityStandards(unittest.TestCase):
                     findings.append(f"{rel_path}: Matched {desc} ({len(matches)} occurrences)")
 
         self.assertEqual(findings, [], f"Secret leak detected in repository: {findings}")
+
+    def test_strict_lexsecure_confidentiality_in_tracked_files(self):
+        """Ensure zero internal demo URLs or internal org architecture specs leak into public tracked files."""
+        res = subprocess.run(["git", "ls-files"], cwd=REPO_ROOT, capture_output=True, text=True, check=True)
+        tracked_files = [f.strip() for f in res.stdout.strip().splitlines() if f.strip()]
+
+        findings = []
+        for rel_path in tracked_files:
+            abs_path = os.path.join(REPO_ROOT, rel_path)
+            if not os.path.isfile(abs_path):
+                continue
+            # Skip test file itself
+            if rel_path.endswith('test_security_standards.py'):
+                continue
+
+            with open(abs_path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+
+            for pattern, desc in CONFIDENTIAL_PATTERNS:
+                matches = re.findall(pattern, content)
+                if matches:
+                    findings.append(f"{rel_path}: Matched {desc} ({len(matches)} occurrences)")
+
+        self.assertEqual(findings, [], f"Confidentiality leak detected in repository: {findings}")
 
     def test_stats_json_sanitized_and_no_pii(self):
         """Ensure assets/stats.json contains strictly sanitized aggregations and ZERO PII."""
@@ -73,6 +104,8 @@ class TestSecurityStandards(unittest.TestCase):
         self.assertIn('terracatch', apps)
         self.assertIn('pingquest', apps)
         self.assertIn('guide', apps)
+        self.assertIn('lexsecure', apps)
+        self.assertIn('last-breath', apps)
 
     def test_user_monetization_rules_adherence(self):
         """Verify strict compliance with user-specified business and monetization models."""
@@ -109,6 +142,15 @@ class TestSecurityStandards(unittest.TestCase):
         # Wayfare Guide is RevenueCat with 14 closed testers
         self.assertIn("RevenueCat", apps['guide']['pricing_model'])
         self.assertEqual(apps['guide']['installs'], 14, "Wayfare Guide must reflect exactly 14 closed beta testers")
+
+        # LexSecure must reflect enterprise pilot
+        self.assertIn('lexsecure', apps)
+        self.assertEqual(apps['lexsecure']['ai_cost'], "$0.02")
+
+        # Last Breath must be 100% free with 155 test suites
+        self.assertIn('last-breath', apps)
+        self.assertFalse(apps['last-breath']['is_monetized'])
+        self.assertEqual(apps['last-breath']['revenue'], "$0")
 
     def test_client_endpoints_are_safe_and_unauthenticated(self):
         """Verify client code does not transmit sensitive headers or use dangerous write endpoints."""

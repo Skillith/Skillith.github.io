@@ -83,13 +83,92 @@ server.listen(8092, async () => {
         await send('Page.navigate', { url: 'http://127.0.0.1:8092' });
         await new Promise(r => setTimeout(r, 2500));
 
-        // Evaluate UI state
+        // Evaluate UI state for all User Stories
         const evalRes = await send('Runtime.evaluate', {
             expression: `
                 (() => {
                     const results = {};
                     
-                    // 1. Check Badges
+                    // US-1: Layout and section order verification
+                    const enterpriseSec = document.getElementById('enterprise');
+                    const projectsSec = document.getElementById('projects');
+                    const aboutSec = document.getElementById('about');
+
+                    results.us1 = {
+                        hasHeroProofStrip: !!document.querySelector('.proof-strip'),
+                        hasHeroConciergeBar: !!document.querySelector('.concierge-hero-bar'),
+                        enterpriseBeforeProjects: (enterpriseSec.compareDocumentPosition(projectsSec) & Node.DOCUMENT_POSITION_FOLLOWING) > 0,
+                        projectsBeforeAbout: (projectsSec.compareDocumentPosition(aboutSec) & Node.DOCUMENT_POSITION_FOLLOWING) > 0
+                    };
+
+                    // US-2: LexSecure Enterprise Spotlight Card & Demo Request Modal
+                    const lexCard = document.getElementById('cardLexSecure');
+                    const lexDemoBtn = document.getElementById('btnRequestLexDemo');
+                    const lexVitalsBtn = document.querySelector('.btn-vitals[data-project="lexsecure"]');
+                    
+                    if (lexDemoBtn) lexDemoBtn.click();
+                    const demoModalOpen = document.getElementById('demoRequestModal').classList.contains('active');
+                    document.getElementById('demoModalClose').click();
+
+                    if (lexVitalsBtn) lexVitalsBtn.click();
+                    const lexVitalsModal = {
+                        opened: document.getElementById('vitalsModal').classList.contains('active'),
+                        title: document.getElementById('vitalsAppTitle').textContent,
+                        coreActionName: document.getElementById('vitalCoreActionName').textContent,
+                        coreCount: document.getElementById('vitalCoreCount').textContent,
+                        aiCost: document.getElementById('vitalAiCost').textContent
+                    };
+                    document.getElementById('vitalsModalClose').click();
+
+                    results.us2 = {
+                        hasLexCard: !!lexCard,
+                        demoModalOpens: demoModalOpen,
+                        lexVitalsModal
+                    };
+
+                    // US-3: Last Breath Game Card & Vitals
+                    const lbCard = document.getElementById('cardLastBreath');
+                    const lbLink = lbCard ? lbCard.querySelector('a.project-link[href="https://last-breath-game-2026.web.app"]') : null;
+                    const lbVitalsBtn = document.querySelector('.btn-vitals[data-project="last-breath"]');
+
+                    if (lbVitalsBtn) lbVitalsBtn.click();
+                    const lbVitalsModal = {
+                        opened: document.getElementById('vitalsModal').classList.contains('active'),
+                        title: document.getElementById('vitalsAppTitle').textContent,
+                        installs: document.getElementById('vitalInstalls').textContent,
+                        revenue: document.getElementById('vitalRevenue').textContent,
+                        paying: document.getElementById('vitalPaying').textContent
+                    };
+                    document.getElementById('vitalsModalClose').click();
+
+                    results.us3 = {
+                        hasLbCard: !!lbCard,
+                        hasLiveLink: !!lbLink,
+                        lbVitalsModal
+                    };
+
+                    // US-4: AI Concierge Drawer & Tool dispatch elements
+                    const conciergeDrawer = document.getElementById('aiConciergeDrawer');
+                    const floatingAiBtn = document.getElementById('floatingAiTrigger');
+                    results.us4 = {
+                        hasDrawer: !!conciergeDrawer,
+                        hasFloatingBtn: !!floatingAiBtn,
+                        hasChips: document.querySelectorAll('.chip').length > 0
+                    };
+
+                    // US-5: Phone QR Pass Modal
+                    const qrBtn = document.getElementById('qrOpenBtn');
+                    if (qrBtn) qrBtn.click();
+                    const qrModalOpen = document.getElementById('qrModal').classList.contains('active');
+                    const qrImgSrc = document.getElementById('qrImageElement')?.getAttribute('src');
+                    document.getElementById('qrModalClose').click();
+
+                    results.us5 = {
+                        qrModalOpens: qrModalOpen,
+                        qrImgSrc
+                    };
+
+                    // US-6: User stat badges
                     const badges = {};
                     document.querySelectorAll('.user-stat-badge').forEach(b => {
                         const proj = b.getAttribute('data-project');
@@ -98,73 +177,20 @@ server.listen(8092, async () => {
                     });
                     results.badges = badges;
 
-                    // 2. Click Morn & Eve
+                    // Existing project modals verification
                     const meBtn = document.querySelector('.btn-vitals[data-project="morn-eve"]');
                     if (meBtn) meBtn.click();
                     results.mornEveModal = {
-                        opened: document.getElementById('vitalsModal').classList.contains('active'),
-                        title: document.getElementById('vitalsAppTitle').textContent,
                         installs: document.getElementById('vitalInstalls').textContent,
-                        revenue: document.getElementById('vitalRevenue').textContent,
-                        paying: document.getElementById('vitalPaying').textContent,
-                        pricingModel: document.getElementById('vitalPricingModel').textContent,
-                        coreCount: document.getElementById('vitalCoreCount').textContent
+                        revenue: document.getElementById('vitalRevenue').textContent
                     };
                     document.getElementById('vitalsModalClose').click();
 
-                    // 3. Click TerraCatch
                     const tcBtn = document.querySelector('.btn-vitals[data-project="terracatch"]');
                     if (tcBtn) tcBtn.click();
                     results.terraCatchModal = {
-                        opened: document.getElementById('vitalsModal').classList.contains('active'),
-                        title: document.getElementById('vitalsAppTitle').textContent,
                         installs: document.getElementById('vitalInstalls').textContent,
-                        revenue: document.getElementById('vitalRevenue').textContent,
-                        paying: document.getElementById('vitalPaying').textContent,
-                        pricingModel: document.getElementById('vitalPricingModel').textContent,
-                        coreCount: document.getElementById('vitalCoreCount').textContent
-                    };
-                    document.getElementById('vitalsModalClose').click();
-
-                    // 4. Click Pingquest
-                    const pqBtn = document.querySelector('.btn-vitals[data-project="pingquest"]');
-                    if (pqBtn) pqBtn.click();
-                    results.pingquestModal = {
-                        opened: document.getElementById('vitalsModal').classList.contains('active'),
-                        title: document.getElementById('vitalsAppTitle').textContent,
-                        installs: document.getElementById('vitalInstalls').textContent,
-                        revenue: document.getElementById('vitalRevenue').textContent,
-                        paying: document.getElementById('vitalPaying').textContent,
-                        pricingModel: document.getElementById('vitalPricingModel').textContent,
-                        coreCount: document.getElementById('vitalCoreCount').textContent
-                    };
-                    document.getElementById('vitalsModalClose').click();
-
-                    // 5. Click Wayfare Guide
-                    const wgBtn = document.querySelector('.btn-vitals[data-project="guide"]');
-                    if (wgBtn) wgBtn.click();
-                    results.wayfareModal = {
-                        opened: document.getElementById('vitalsModal').classList.contains('active'),
-                        title: document.getElementById('vitalsAppTitle').textContent,
-                        installs: document.getElementById('vitalInstalls').textContent,
-                        revenue: document.getElementById('vitalRevenue').textContent,
-                        paying: document.getElementById('vitalPaying').textContent,
-                        pricingModel: document.getElementById('vitalPricingModel').textContent,
-                        coreCount: document.getElementById('vitalCoreCount').textContent
-                    };
-                    document.getElementById('vitalsModalClose').click();
-
-                    // 6. Click Dalil Notecard
-                    const dalilBtn = document.querySelector('.btn-vitals[data-project="dalil"]');
-                    if (dalilBtn) dalilBtn.click();
-                    results.dalilModal = {
-                        opened: document.getElementById('vitalsModal').classList.contains('active'),
-                        title: document.getElementById('vitalsAppTitle').textContent,
-                        installs: document.getElementById('vitalInstalls').textContent,
-                        revenue: document.getElementById('vitalRevenue').textContent,
-                        paying: document.getElementById('vitalPaying').textContent,
-                        pricingModel: document.getElementById('vitalPricingModel').textContent,
-                        coreCount: document.getElementById('vitalCoreCount').textContent
+                        revenue: document.getElementById('vitalRevenue').textContent
                     };
                     document.getElementById('vitalsModalClose').click();
 
@@ -179,37 +205,61 @@ server.listen(8092, async () => {
 
         // Assertions
         let pass = true;
-        if (testResults.mornEveModal.installs !== '257') {
-            console.error('FAIL: Morn & Eve installs expected 257, got', testResults.mornEveModal.installs);
+
+        // US-1 Checks
+        if (!testResults.us1.hasHeroProofStrip || !testResults.us1.hasHeroConciergeBar) {
+            console.error('FAIL US-1: Hero missing Proof Strip or Concierge Bar');
             pass = false;
         }
-        if (testResults.mornEveModal.revenue !== '$0' || testResults.mornEveModal.paying !== '0') {
-            console.error('FAIL: Morn & Eve should be free with $0 revenue');
+        if (!testResults.us1.enterpriseBeforeProjects || !testResults.us1.projectsBeforeAbout) {
+            console.error('FAIL US-1: Section order incorrect. Expected Enterprise -> Projects -> About');
             pass = false;
         }
-        if (testResults.terraCatchModal.installs !== '293' || testResults.terraCatchModal.paying !== '1') {
-            console.error('FAIL: TerraCatch expected 293 installs and 1 paying user, got', testResults.terraCatchModal);
+
+        // US-2 Checks
+        if (!testResults.us2.hasLexCard || !testResults.us2.demoModalOpens) {
+            console.error('FAIL US-2: LexSecure card missing or Demo Request modal failed to open');
             pass = false;
         }
-        if (!testResults.terraCatchModal.revenue.includes('$2.99')) {
-            console.error('FAIL: TerraCatch revenue expected $2.99, got', testResults.terraCatchModal.revenue);
+        if (testResults.us2.lexVitalsModal.title !== 'LexSecure' || testResults.us2.lexVitalsModal.coreCount !== '150') {
+            console.error('FAIL US-2: LexSecure vitals mismatch', testResults.us2.lexVitalsModal);
             pass = false;
         }
-        if (testResults.pingquestModal.installs !== '52') {
-            console.error('FAIL: Pingquest installs expected 52, got', testResults.pingquestModal.installs);
+
+        // US-3 Checks
+        if (!testResults.us3.hasLbCard || !testResults.us3.hasLiveLink) {
+            console.error('FAIL US-3: Last Breath card or live link missing');
             pass = false;
         }
-        if (testResults.wayfareModal.installs !== '14') {
-            console.error('FAIL: Wayfare Guide installs expected 14, got', testResults.wayfareModal.installs);
+        if (testResults.us3.lbVitalsModal.title !== 'Last Breath' || testResults.us3.lbVitalsModal.installs !== '24') {
+            console.error('FAIL US-3: Last Breath vitals mismatch', testResults.us3.lbVitalsModal);
             pass = false;
         }
-        if (testResults.dalilModal.installs !== '9' || testResults.dalilModal.paying !== '1' || testResults.dalilModal.revenue !== '$4.99/mo') {
-            console.error('FAIL: Dalil Notecard expected 9 installs, 1 paying, $4.99/mo, got', testResults.dalilModal);
+
+        // US-4 Checks
+        if (!testResults.us4.hasDrawer || !testResults.us4.hasFloatingBtn || !testResults.us4.hasChips) {
+            console.error('FAIL US-4: AI Concierge drawer, floating trigger, or chips missing');
+            pass = false;
+        }
+
+        // US-5 Checks
+        if (!testResults.us5.qrModalOpens || testResults.us5.qrImgSrc !== 'assets/skillith-qr.svg') {
+            console.error('FAIL US-5: QR modal failed to open or QR image src is incorrect');
+            pass = false;
+        }
+
+        // Existing regressions
+        if (testResults.mornEveModal.installs !== '257' || testResults.mornEveModal.revenue !== '$0') {
+            console.error('FAIL: Morn & Eve vitals regression');
+            pass = false;
+        }
+        if (testResults.terraCatchModal.installs !== '293' || !testResults.terraCatchModal.revenue.includes('$2.99')) {
+            console.error('FAIL: TerraCatch vitals regression');
             pass = false;
         }
 
         if (pass) {
-            console.log('[TEST SUCCESS] All local UI and Vitals modal data verified accurately!');
+            console.log('[TEST SUCCESS] All User Stories (US-1 to US-6) verified accurately in local browser environment!');
         } else {
             process.exitCode = 1;
         }

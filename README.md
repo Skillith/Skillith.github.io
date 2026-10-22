@@ -5,63 +5,53 @@
   [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Skillith)
   [![Website](https://img.shields.io/badge/Personal_Website-4CAF50?style=for-the-badge&logo=google-chrome&logoColor=white)](https://skillith.github.io)
   
-  <h3>Technical Project Manager | AI-Powered Product Delivery | Cloud Migration</h3>
-  <p>I am a Technical Project Manager who bridges the gap between business vision and technical execution. Driven by a passion for AI-powered product delivery and cloud migration, I bring creative, functional products to life.</p>
+  <h3>Agentic Transformation Leader | Technical Project Manager | Enterprise In-Tenant AI</h3>
+  <p>I am a Technical Project Manager & Change Leader turning complex enterprise and consumer ideas into governed, production-ready software through disciplined multi-agent workflows.</p>
+
+  <p>
+    <code>11 Shipped Systems</code> • 
+    <code>750+ Users Migrated (40 Depts)</code> • 
+    <code>~$0.02/Doc AI Economics</code> • 
+    <code>155+ Automated E2E Tests</code> • 
+    <code>100% Zero-Leak Verified</code>
+  </p>
 </div>
 
 <hr />
 
-## 🧑‍💻 About Me
-My journey to technical project management began in the social sector, driven by a deep desire to help people. I managed **Motivation United**, a project funded by the European Social Fund, where I was given full autonomy to help 80 jobseekers with migration backgrounds find employment. We successfully achieved all our goals six months ahead of schedule and well within budget.
+## 💼 Enterprise & Business Solutions
 
-Building on this success, I founded a non-profit called **Talent2connect** to bridge the gap between corporate employers and grassroots employment organizations through major matchmaking events. During this time, I formalised my expertise by studying Project Management and Business Analysis.
+### ⚖️ LexSecure — In-Tenant Legal Contract Intelligence & Governance
+> Enterprise-grade contract intelligence, playbook redlining, and legal operations workstation engineered specifically for institutional legal departments where multi-tenant third-party SaaS AI is strictly prohibited.
 
-When COVID-19 hit, in-person matchmaking was no longer possible. I transitioned into the IT sector, working as a Business Analyst and Change Manager. Nine months later, I stepped into IT Project Management in the legal tech industry, focusing on information and contract management.
-
-Currently, I am working at the **Baha'i World Centre**, implementing a large-scale cloud migration to SharePoint, transitioning 40 departments (750+ people) ahead of schedule and within budget.
-
-My fascination with AI began in 2022, watching early GPT models emerge. When GPT-3.5 was released, I immediately integrated it into my life and workflow. Today, advanced models enable me to bring my own creative concepts to life—from publishing a children's book to developing projects like **TerraCatch**. This hands-on building process shapes how I work: whenever inspiration strikes, I map out the logic and bring it to life. Through this evolution, I realized I could still help people, but at a much larger scale—through the apps I build and the service I provide to my customers.
-
----
-
-## 🛠️ Tech Stack & Expertise
-
-<table>
-  <tr>
-    <td width="33.3%" valign="top">
-      <h4>📱 Frontend & Mobile</h4>
-      <ul>
-        <li>Flutter / Dart</li>
-        <li>React / TypeScript</li>
-        <li>Vite / HTML5 / CSS3</li>
-        <li>Progressive Web Apps (PWAs)</li>
-      </ul>
-    </td>
-    <td width="33.3%" valign="top">
-      <h4>⚙️ Backend & Cloud</h4>
-      <ul>
-        <li>FastAPI / Python / REST APIs</li>
-        <li>Firebase Auth / Firestore</li>
-        <li>GCP / Cloud Functions</li>
-        <li>Isar Database (Encrypted)</li>
-      </ul>
-    </td>
-    <td width="33.3%" valign="top">
-      <h4>🧠 AI & Automation</h4>
-      <ul>
-        <li>Google Gemini API</li>
-        <li>OpenAI API (Lore & Logic)</li>
-        <li>Web Speech APIs</li>
-        <li>Agentic SDLC Orchestration</li>
-      </ul>
-    </td>
-  </tr>
-</table>
+- **Architectural Sovereignty:** Runs **100% inside the organization's Microsoft 365 & Azure tenant boundary** (`Sites.Selected` Graph API lock).
+- **Zero Data Retention (ZDR):** Powered exclusively by **Microsoft Foundry's GPT-6 Luna (max)** with guaranteed commercial ZDR.
+- **Direct-to-API Ephemeral Streaming:** Files stream in 32KB duplex memory chunks directly into Azure Document Intelligence. Zero document bytes are ever written to server disks.
+- **Playbook-Driven Redlining:** Generates valid native Microsoft Word (`.docx`) documents with tracked changes, strike-throughs, counter-proposals, and institutional jurisdictional overrides.
+- **Unit Economics:** **~$0.02 / agreement** with an enforced **$50.00 USD hard Azure Bicep budget cap** (<$21 total pilot cost).
+- **Personal Walkthrough:** Private 1-on-1 enterprise demos available via [skillith.github.io](https://skillith.github.io/#enterprise).
 
 ---
 
-## 🚀 Featured Projects
-*Listed in order of release status (production-ready and live apps first)*
+## 🚀 Shipped Products & Game Engines
+*Listed in order of release status (production-ready and live systems first)*
+
+### 🐺 Last Breath
+> Modern mobile-first social deduction (Werewolf / Clocktower style) companion Progressive Web App for living-room game nights.
+- **Tech Stack:** `React 19` `TypeScript` `Web Audio API` `Vitest (155 Tests)` `Firebase Firestore` `PWA`
+- **Status:** Deployed & Live 🟢
+- **Links:** 🌐 [Live Webapp](https://last-breath-game-2026.web.app) | 🔒 Private Codebase
+<details>
+<summary><b>🔍 Key Features & Architecture</b></summary>
+
+- **100% Deterministic Rules Engine:** Decoupled TypeScript engine resolving dynamic night order sequences, action matrices, and trial voting tallies.
+- **Procedural Web Audio Synthesizer:** Synthesizes Gothic Night Bells, Dawn Rooster Chimes, and Execution Gongs directly via the Web Audio API with **zero external audio file downloads**.
+- **14 Modular Roles Catalog:** Town, Werewolf, Vampire (feeding & thrall vote lock), Undead (plague propagation), and Solo Monster (Chupacabra defense bypass) alignments.
+- **Storyteller Grimoire & Player PWA:** Circular table visual seating chart, face-down privacy shield role card (tap-and-hold), and 1-time ghost voting tokens.
+- **Rigor-Driven Verification:** 155 automated unit, component, and end-to-end integration tests passing via Vitest.
+</details>
+
+<br/>
 
 ### 📱 Morn & Eve
 > A daily spiritual companion app designed for Baha'i reading, daily cycles tracking, and service quest logging.
@@ -71,7 +61,7 @@ My fascination with AI began in 2022, watching early GPT models emerge. When GPT
 <details>
 <summary><b>🔍 Key Features & Architecture</b></summary>
 
-- Morning/Evening cycle progression, habits tracking, and streaks.
+- Morning/Evening cycle progression, habits tracking, and unbroken daily streaks.
 - Badi' calendar implementation (19 months, Intercalary days, Fast tracker).
 - Offline-first encrypted database using Isar.
 - Secure, progress-only cloud synchronization via Firebase.
@@ -87,7 +77,7 @@ My fascination with AI began in 2022, watching early GPT models emerge. When GPT
 <details>
 <summary><b>🔍 Key Features & Architecture</b></summary>
 
-- Real-time animal video identification.
+- Real-time animal video identification via computer vision frame sampling.
 - Lore-driven AI stat profiles (7 base stats + movesets).
 - Evolution tokens, collection synchronization, and exhibition battles simulator.
 </details>
@@ -120,8 +110,8 @@ My fascination with AI began in 2022, watching early GPT models emerge. When GPT
 <summary><b>🔍 Key Features & Architecture</b></summary>
 
 - Real-time speech-recognition API integration.
-- Local keyword match engine for offline reliability.
-- Adaptive API throttling (5-15 RPM) to prevent limit hits.
+- Local keyword match engine bypassing 85% of cloud API calls.
+- Adaptive API throttling (5-15 RPM) to prevent rate limit hits.
 - Serverless Gemini API proxy enforcing premium usage limits.
 </details>
 
@@ -136,7 +126,7 @@ My fascination with AI began in 2022, watching early GPT models emerge. When GPT
 <summary><b>🔍 Key Features & Architecture</b></summary>
 
 - Interactive log terminal emulator for background processing.
-- BYOK (Bring Your Own Key) setup panel for user control.
+- BYOK (Bring Your Own Key) setup panel for user control with zero server token liability.
 - Free 24/7 headless Google Apps Script trigger integrations.
 - Custom whitelisting and category-to-action rule mappings.
 </details>
@@ -151,60 +141,34 @@ My fascination with AI began in 2022, watching early GPT models emerge. When GPT
 <details>
 <summary><b>🔍 Key Features & Architecture</b></summary>
 
-- Interactive canvas-based force-directed relation graph to visually map connections between historical figures.
+- Interactive canvas-based force-directed relation graph mapping historical figures and cities.
 - Typo-tolerant and accent-insensitive fuzzy search.
-- Offline-first accessibility with custom Progressive Web App (PWA) configurations.
+- Offline-first accessibility with custom Progressive Web App (PWA) caching.
 - Offline document exporters supporting Microsoft Word (`.docx`) file generation.
 </details>
 
 <br/>
 
-### 🏡 Wayfare Network
-> Mission-driven hospitality directory connecting travelers with local hosts through shared life, radical hospitality, and authentic community building.
-- **Tech Stack:** `React` `TypeScript` `Firebase Auth` `Pay-What-You-Want Model`
-- **Status:** In Design 🔵
-<details>
-<summary><b>🔍 Key Features & Architecture</b></summary>
+### 🗺️ Wayfare Suite
+> Multi-modal travel, community hospitality, and GPS road-trip narration suite.
+- **Wayfare Guide (Alpha):** Flutter + GPS listener + Gemini API road-trip narrator.
+- **Wayfare Logic (Design):** Conversational routing engine with layover empathy hotel recommendations.
+- **Wayfare Network (Design):** Mission-driven hospitality directory with radical hospitality pledges.
 
-- Host Commitment Charter mandating shared meals, cultural outings, and local community participation.
-- Friction-as-a-feature unlisted video application requirement filtering for high-intent, respectful travelers.
-- Sustainable Pay-What-You-Want (PWYW) community contribution model.
-- Unified Firebase authentication shared across the entire Wayfare ecosystem suite.
-</details>
+---
 
-<br/>
+## 🧑‍💻 Career & Transformation Journey
 
-### 🧭 Wayfare Logic
-> Multi-modal conversational travel routing engine that connects flights, rail, and regional bus itineraries.
-- **Tech Stack:** `React` `TypeScript` `Vite` `Firebase Cloud Functions` `Kiwi/Amadeus APIs`
-- **Status:** Design & Live Webapp 🔵
-<details>
-<summary><b>🔍 Key Features & Architecture</b></summary>
-
-- Interactive Gemini 3.5 Flash intake interview loop.
-- Layover empathy hotel recommendation engine.
-- Persistent session memory and direct-booking deep links model.
-</details>
-
-<br/>
-
-### 🗺️ Wayfare Guide
-> Road-trip narration companion that reads geographical and cultural facts about the landscape as you drive.
-- **Tech Stack:** `Flutter` `Firebase` `Gemini API`
-- **Status:** Prototype (Alpha Testing) 🟡
-<details>
-<summary><b>🔍 Key Features & Architecture</b></summary>
-
-- Real-time GPS coordinate listeners.
-- Gemini API narrator with context-rich folklore/geographical insights.
-- National Park adventure themed user interface.
-</details>
+1. **Phase 01 • Social Impact & ESF Delivery:** Managed European Social Fund project (*Motivation United*) with full autonomy, helping 80 jobseekers with migration backgrounds find sustainable careers **6 months ahead of schedule and well within budget**.
+2. **Phase 02 • Founder & Matchmaker (Talent2connect):** Founded non-profit bridging corporate employers with grassroots employment groups via major matchmaking events while formalizing Project Management and Business Analysis credentials.
+3. **Phase 03 • Legal Tech PM & Enterprise Cloud Migration:** Transitioned into IT PM & Change Management in legal tech, then spearheaded the enterprise cloud migration to SharePoint at the **Baha'i World Centre**, moving 40 departments (750+ people) ahead of schedule and within budget.
+4. **Phase 04 • Agentic Transformation Leader:** Pioneering governed multi-agent engineering workflows—orchestrating specialized subagent teams with deterministic verification gates, shipping enterprise intelligence (LexSecure) and live consumer applications in days.
 
 ---
 
 ## 📬 Let's Connect!
 
-Feel free to reach out, collaborate on projects, or check out my work!
+Feel free to reach out to discuss Agentic Transformation, in-tenant enterprise AI architecture, or product leadership!
 
 [![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sam-ebrahimi/)
 [![GitHub Profile](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Skillith)

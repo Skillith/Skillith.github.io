@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sam Ebrahimi | Technical Project Manager & Product Creator</title>
-    <meta name="description" content="Saman (Sam) Ebrahimi's professional portfolio. Technical Project Manager specializing in AI-Powered Product Delivery and Cloud Migration.">
+    <title>Sam Ebrahimi | Agentic Transformation Leader & Technical PM</title>
+    <meta name="description" content="Saman (Sam) Ebrahimi's professional portfolio. Agentic Transformation Leader and Technical Project Manager specializing in in-tenant enterprise AI, multi-agent workflows, and cloud migration.">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2">
-    <link rel="stylesheet" href="style.css?v=1.0.7">
+    <link rel="stylesheet" href="style.css?v=2.0.0">
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@0.350.0/dist/umd/lucide.min.js"></script>
 </head>
@@ -21,10 +21,16 @@
     <!-- Navigation Header -->
     <header>
         <div class="container nav-container">
+            <a href="#home" class="logo">Sam Ebrahimi</a>
             <nav class="nav-links">
-                <a href="#about">About</a>
+                <a href="#enterprise">Enterprise</a>
                 <a href="#projects" class="active">Projects</a>
+                <a href="#about">About</a>
                 <a href="#contact">Contact</a>
+                <button class="nav-qr-btn" id="qrOpenBtn" title="In-Person Phone Pass">
+                    <i data-lucide="qr-code"></i>
+                    <span>QR Pass</span>
+                </button>
             </nav>
         </div>
     </header>
@@ -33,7 +39,8 @@
     <section class="hero" id="home">
         <div class="container hero-content">
             <div class="hero-subtitle-container">
-                <span>Available for Product Delivery</span>
+                <span class="live-dot-ping"></span>
+                <span>Agentic Transformation & Technical PM</span>
             </div>
             <h1>Hi, I'm Sam Ebrahimi</h1>
             
@@ -42,92 +49,174 @@
             </div>
 
             <p class="hero-description">
-                I am a Technical Project Manager who bridges the gap between business vision and technical execution. Driven by a passion for AI-powered product delivery and cloud migration, I bring creative, functional products to life.
+                I am a Technical Project Manager & Change Leader who turns complex enterprise and consumer ideas into governed, production-ready software through disciplined multi-agent workflows.
             </p>
 
+            <!-- Live Proof Strip -->
+            <div class="proof-strip">
+                <div class="proof-item">
+                    <span class="proof-num">11</span>
+                    <span class="proof-label">Shipped Systems</span>
+                </div>
+                <div class="proof-divider"></div>
+                <div class="proof-item">
+                    <span class="proof-num">750+</span>
+                    <span class="proof-label">Enterprise Users Migrated</span>
+                </div>
+                <div class="proof-divider"></div>
+                <div class="proof-item">
+                    <span class="proof-num">~$0.02</span>
+                    <span class="proof-label">Doc AI Economics</span>
+                </div>
+                <div class="proof-divider"></div>
+                <div class="proof-item">
+                    <span class="proof-num">155+</span>
+                    <span class="proof-label">Automated E2E Tests</span>
+                </div>
+                <div class="proof-divider"></div>
+                <div class="proof-item">
+                    <span class="proof-num">100%</span>
+                    <span class="proof-label">Zero-Leak Verified</span>
+                </div>
+            </div>
+
+            <!-- Embedded Voice & Text AI Concierge Bar -->
+            <div class="concierge-hero-bar">
+                <div class="concierge-top-row">
+                    <button class="hero-voice-btn" id="heroVoiceTrigger" title="Talk to Sam's AI with Voice">
+                        <span class="voice-orb-glow"></span>
+                        <i data-lucide="mic"></i>
+                        <span>Talk with Voice</span>
+                    </button>
+                    <div class="hero-chat-input-wrap">
+                        <i data-lucide="sparkles" class="input-sparkle-icon"></i>
+                        <input type="text" id="heroChatInput" placeholder="Ask about LexSecure, agentic workflows, or my apps..." aria-label="Ask Sam's AI Concierge">
+                        <button id="heroChatSend" aria-label="Send message">
+                            <i data-lucide="send"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="concierge-chips">
+                    <span class="chips-label">Quick Inquiries:</span>
+                    <button class="chip" data-prompt="Walk me through LexSecure's in-tenant enterprise business case">
+                        <i data-lucide="scale"></i> LexSecure Case Study
+                    </button>
+                    <button class="chip" data-prompt="How do you lead agentic delivery for enterprise teams?">
+                        <i data-lucide="zap"></i> Agentic Delivery Playbook
+                    </button>
+                    <button class="chip" data-prompt="How does the Last Breath werewolf engine work?">
+                        <i data-lucide="moon"></i> Last Breath Rules Engine
+                    </button>
+                    <button class="chip" data-prompt="What were your results during the 40-department cloud migration?">
+                        <i data-lucide="cloud"></i> 40-Dept Migration
+                    </button>
+                </div>
+            </div>
+
             <div class="hero-cta">
-                <a href="#projects" class="btn btn-primary">
-                    <i data-lucide="layers"></i> View Projects
+                <a href="#enterprise" class="btn btn-primary">
+                    <i data-lucide="shield-check"></i> Explore Enterprise Work
                 </a>
-                <a href="#contact" class="btn btn-secondary">
-                    <i data-lucide="mail"></i> Let's Connect
+                <a href="#projects" class="btn btn-secondary">
+                    <i data-lucide="layers"></i> Shipped Apps & Games
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="section" id="about">
+    <!-- Enterprise & Business Solutions Section -->
+    <section class="section" id="enterprise">
         <div class="container">
             <div class="section-header">
-                <h2>🧑‍💻 About Me</h2>
-                <p>Strategic execution, AI-augmented delivery, and cloud infrastructure</p>
+                <h2>💼 Enterprise & Business Solutions</h2>
+                <p>In-tenant data sovereignty, Zero Data Retention (ZDR), and governed enterprise intelligence</p>
             </div>
 
-            <div class="about-grid">
-                <div class="about-card">
-                    <p>
-                        My journey to technical project management began in the social sector, driven by a deep desire to help people. I managed <strong>Motivation United</strong>, a project funded by the European Social Fund, where I was given full autonomy to help 80 jobseekers with migration backgrounds find employment. We successfully achieved all our goals six months ahead of schedule and well within budget.
-                    </p>
-                    <p>
-                        Building on this success, I founded a non-profit called <strong>Talent2connect</strong> to bridge the gap between corporate employers and grassroots employment organizations through major matchmaking events. During this time, I formalised my expertise by studying Project Management and Business Analysis.
-                    </p>
-                    <p>
-                        When COVID-19 hit, in-person matchmaking was no longer possible. I transitioned into the IT sector, working as a Business Analyst and Change Manager. Nine months later, I stepped into IT Project Management in the legal tech industry, focusing on information and contract management.
-                    </p>
-                    <p>
-                        Currently, I am working at the <strong>Baha'i World Centre</strong>, implementing a large-scale cloud migration to SharePoint, transitioning 40 departments (750+ people) ahead of schedule and within budget.
-                    </p>
-                    <p>
-                        My fascination with AI began in 2022, watching early GPT models emerge. When GPT-3.5 was released, I immediately integrated it into my life and workflow. Today, advanced models enable me to bring my own creative concepts to life—from publishing a children's book to developing projects like <strong>TerraCatch</strong>. This hands-on building process shapes how I work: whenever inspiration strikes, I map out the logic and bring it to life. Through this evolution, I realized I could still help people, but at a much larger scale—through the apps I build and the service I provide to my customers.
-                    </p>
+            <!-- LexSecure Spotlight Card -->
+            <div class="enterprise-card" id="cardLexSecure">
+                <div class="enterprise-header">
+                    <div class="enterprise-title-group">
+                        <div class="enterprise-badge-row">
+                            <span class="enterprise-tag"><i data-lucide="building"></i> Business & Enterprise Flagship</span>
+                            <span class="enterprise-status"><span class="status-dot"></span> Pilot Live</span>
+                        </div>
+                        <h3 class="enterprise-title">LexSecure</h3>
+                        <p class="enterprise-subtitle">In-Tenant Legal Contract Intelligence, Playbook Redlining & Governance Platform</p>
+                    </div>
+                    <div class="enterprise-meta-chips">
+                        <span class="meta-chip"><i data-lucide="shield"></i> 100% In-Tenant M365 & Azure</span>
+                        <span class="meta-chip"><i data-lucide="cpu"></i> Zero Data Retention (ZDR)</span>
+                        <span class="meta-chip"><i data-lucide="lock"></i> Sites.Selected Graph Scoping</span>
+                    </div>
                 </div>
 
-                <div class="about-skills">
-                    <div class="stack-group">
-                        <h3><i data-lucide="smartphone"></i> Mobile & Frontend</h3>
-                        <div class="stack-items">
-                            <span class="tag">Flutter</span>
-                            <span class="tag">Dart</span>
-                            <span class="tag">React</span>
-                            <span class="tag">TypeScript</span>
-                            <span class="tag">Vite</span>
-                            <span class="tag">PWAs</span>
+                <div class="enterprise-body">
+                    <div class="enterprise-narrative">
+                        <h4>The Business Problem & The Idea</h4>
+                        <p>
+                            Institutional legal departments face strict regulatory and compliance barriers against multi-tenant third-party SaaS AI. <strong>LexSecure</strong> solves this by running <strong>100% inside the organization's Microsoft 365 and Azure tenant boundary</strong>. It guarantees absolute data sovereignty, zero base-model training, and zero reliance on external cloud vendors.
+                        </p>
+                    </div>
+
+                    <div class="enterprise-pillars-grid">
+                        <div class="pillar-card">
+                            <div class="pillar-icon"><i data-lucide="zap"></i></div>
+                            <h5>Zero Data Retention & Ephemeral RAM</h5>
+                            <p>Powered exclusively by Microsoft Foundry's GPT-6 Luna under commercial ZDR terms. 32KB duplex memory streaming directly into Azure Document Intelligence—zero document files are ever written to server disks.</p>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-icon"><i data-lucide="file-check"></i></div>
+                            <h5>Playbook-Driven .docx Redlining</h5>
+                            <p>Evaluates contracts against institutional playbook standards. Automatically generates valid native Microsoft Word (<code>.docx</code>) documents with tracked changes, counter-proposals, and jurisdictional overrides.</p>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-icon"><i data-lucide="sliders"></i></div>
+                            <h5>Backoffice Governance & SharePoint Sync</h5>
+                            <p>Cryptographically locks Graph API access strictly to designated legal site collections. Features 5-tier sensitivity watermarking, automated statutory retention countdowns, and instant Emergency Legal Hold overrides.</p>
                         </div>
                     </div>
 
-                    <div class="stack-group">
-                        <h3><i data-lucide="database"></i> Backend & Cloud</h3>
-                        <div class="stack-items">
-                            <span class="tag">FastAPI</span>
-                            <span class="tag">Python</span>
-                            <span class="tag">Firebase Auth</span>
-                            <span class="tag">Firestore</span>
-                            <span class="tag">GCP</span>
-                            <span class="tag">Isar DB</span>
+                    <!-- Enterprise Unit Economics Strip -->
+                    <div class="enterprise-economics-banner">
+                        <div class="econ-stat">
+                            <span class="econ-val">~$0.02</span>
+                            <span class="econ-lbl">Per Agreement (Inference & Layout)</span>
+                        </div>
+                        <div class="econ-divider"></div>
+                        <div class="econ-stat">
+                            <span class="econ-val">&lt; $21</span>
+                            <span class="econ-lbl">Pilot Budget (Enforced $50 Hard Bicep Cap)</span>
+                        </div>
+                        <div class="econ-divider"></div>
+                        <div class="econ-stat">
+                            <span class="econ-val">0 MB</span>
+                            <span class="econ-lbl">Server Disk Footprint (Ephemeral RAM)</span>
                         </div>
                     </div>
 
-                    <div class="stack-group">
-                        <h3><i data-lucide="cpu"></i> AI & Automation</h3>
-                        <div class="stack-items">
-                            <span class="tag">Gemini API</span>
-                            <span class="tag">OpenAI API</span>
-                            <span class="tag">Speech APIs</span>
-                            <span class="tag">Agentic Workflows</span>
-                        </div>
+                    <!-- Enterprise Actions -->
+                    <div class="enterprise-actions">
+                        <button class="btn btn-primary" id="btnRequestLexDemo">
+                            <i data-lucide="mail"></i> Request Personal Demo
+                        </button>
+                        <button class="btn-vitals" data-project="lexsecure" title="View Enterprise Metrics & Economics">
+                            <i data-lucide="bar-chart-2"></i> Enterprise Vitals
+                        </button>
+                        <button class="btn-console" data-project="lexsecure" title="Inspect Architecture & Governance Console">
+                            <i data-lucide="terminal"></i> Architecture Console
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Shipped Projects Section -->
     <section class="section" id="projects">
         <div class="container">
             <div class="section-header">
-                <h2>🚀 Featured Projects</h2>
-                <p>Interactive dashboard of active codebases and deployments</p>
+                <h2>🚀 Shipped Products & Game Engines</h2>
+                <p>Interactive dashboard of active codebases, game systems, and live deployments</p>
             </div>
 
             <!-- Category Filters -->
@@ -140,6 +229,47 @@
 
             <!-- Project Cards Grid -->
             <div class="projects-grid">
+
+                <!-- Last Breath (NEW) -->
+                <div class="project-card webapp ai" id="cardLastBreath">
+                    <div class="project-header">
+                        <div class="project-title-wrap">
+                            <h3 class="project-title">Last Breath</h3>
+                            <span class="user-stat-badge" data-stat="last_breath_users" data-project="last-breath" title="Click to view App Vitals">
+                                <i data-lucide="users"></i> <span class="stat-num">24</span> Players
+                            </span>
+                        </div>
+                        <span class="project-status status-live">
+                            <span class="status-dot"></span> Live
+                        </span>
+                    </div>
+                    <p class="project-desc">
+                        Modern mobile-first social deduction (Werewolf / Clocktower) companion PWA. Features a 100% deterministic TypeScript night-resolution engine, Storyteller Digital Grimoire, and zero-asset procedural Web Audio synthesizer.
+                    </p>
+                    <div class="project-tags">
+                        <span>React 19</span>
+                        <span>TypeScript</span>
+                        <span>Web Audio API</span>
+                        <span>155 Tests</span>
+                        <span>PWA</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://last-breath-game-2026.web.app" target="_blank" class="project-link">
+                            <i data-lucide="external-link"></i> Live App
+                        </a>
+                        <span class="project-link project-link-disabled">
+                            <i data-lucide="lock"></i> Private
+                        </span>
+                        <div class="project-action-btns">
+                            <button class="btn-vitals" data-project="last-breath" title="View Game Vitals & Test Suite">
+                                <i data-lucide="bar-chart-2"></i> Vitals
+                            </button>
+                            <button class="btn-console" data-project="last-breath" title="Inspect Rules Engine Console">
+                                <i data-lucide="terminal"></i> Console
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- Morn & Eve -->
                 <div class="project-card mobile ai">
@@ -155,7 +285,7 @@
                         </span>
                     </div>
                     <p class="project-desc">
-                        A daily spiritual companion app designed for Baha'i reading, daily cycles tracking, and service quest logging. Incorporates streaks, Feast days, and offline-first encrypted storage.
+                        Daily spiritual companion app with Badi' calendar tracking, daily reading progressions, unbroken streak monitoring, and offline-first encrypted Isar storage.
                     </p>
                     <div class="project-tags">
                         <span>Flutter</span>
@@ -198,7 +328,7 @@
                         </span>
                     </div>
                     <p class="project-desc">
-                        Pokémon-style real-world animal capture and stats game. Utilizes AI video analysis to record local wildlife clips, identify species, and build customized lore-driven battle profiles.
+                        Real-world wildlife capture and stats game. Uses computer vision video analysis to identify local animal species and generate customized lore-driven battle profiles.
                     </p>
                     <div class="project-tags">
                         <span>Flutter</span>
@@ -238,7 +368,7 @@
                         </span>
                     </div>
                     <p class="project-desc">
-                        Multiplayer tabletop LitRPG Progressive Web App powered by Gemini AI. Features an autonomous AI Dungeon Master ("The Guide"), real-time fractional micro-progression, and live War Room voice deliberation.
+                        Multiplayer tabletop LitRPG Progressive Web App. Features an autonomous AI Dungeon Master, real-time fractional micro-progression (+0.001 to +0.100), and live War Room voice deliberation.
                     </p>
                     <div class="project-tags">
                         <span>React 19</span>
@@ -279,7 +409,7 @@
                         </span>
                     </div>
                     <p class="project-desc">
-                        Hands-free tour guide assistant that transcribes speech in real-time and ticks off talking points automatically. Features adaptive API throttling and local keyword matching.
+                        Hands-free tour guide assistant that transcribes speech in real time and checks off talking points automatically via local keyword matching and adaptive API throttling.
                     </p>
                     <div class="project-tags">
                         <span>React</span>
@@ -319,7 +449,7 @@
                         </span>
                     </div>
                     <p class="project-desc">
-                        Real-time client-side AI Gmail cleaner agent. Runs in the background to classify and archive incoming promotional clutter using custom rule sets and automated script triggers.
+                        Client-side AI Gmail cleaner running on a Bring-Your-Own-Key model. Classifies marketing clutter and runs 24/7 automated archiving passes with zero server token liability.
                     </p>
                     <div class="project-tags">
                         <span>React 19</span>
@@ -359,7 +489,7 @@
                         </span>
                     </div>
                     <p class="project-desc">
-                        An offline-first study companion and interactive directory of names, cities, and connections for the historical narrative of the early Bahá'í Revelation. Features canvas-based force-directed graphs and fuzzy accent-insensitive search.
+                        Offline-first historical narrative study companion featuring HTML5 canvas force-directed connection graphs, typo-tolerant fuzzy search, and offline Word (.docx) exporting.
                     </p>
                     <div class="project-tags">
                         <span>React 19</span>
@@ -385,70 +515,6 @@
                     </div>
                 </div>
 
-                <!-- Wayfare Network -->
-                <div class="project-card webapp">
-                    <div class="project-header">
-                        <h3 class="project-title">Wayfare Network</h3>
-                        <span class="project-status status-design">
-                            <span class="status-dot"></span> In Design
-                        </span>
-                    </div>
-                    <p class="project-desc">
-                        A mission-driven hospitality directory connecting travelers with local hosts through shared life, radical hospitality, and authentic community building. Features unlisted video intent filtering and a Pay-What-You-Want model.
-                    </p>
-                    <div class="project-tags">
-                        <span>React</span>
-                        <span>TypeScript</span>
-                        <span>Firebase</span>
-                        <span>Community PWYW</span>
-                    </div>
-                    <div class="project-links">
-                        <span class="project-link project-link-disabled">
-                            <i data-lucide="external-link"></i> Offline
-                        </span>
-                        <span class="project-link project-link-disabled">
-                            <i data-lucide="lock"></i> Private
-                        </span>
-                        <div class="project-action-btns">
-                            <button class="btn-console" data-project="network" title="Developer Console">
-                                <i data-lucide="terminal"></i> Console
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Wayfare Logic -->
-                <div class="project-card webapp">
-                    <div class="project-header">
-                        <h3 class="project-title">Wayfare Logic</h3>
-                        <span class="project-status status-design">
-                            <span class="status-dot"></span> In Design
-                        </span>
-                    </div>
-                    <p class="project-desc">
-                        Multi-modal conversational itinerary planner connecting flight, rail, and bus routes. Features a Gemini Flash intake questionnaire and hotel recommendation models.
-                    </p>
-                    <div class="project-tags">
-                        <span>React</span>
-                        <span>Vite</span>
-                        <span>Firebase</span>
-                        <span>Kiwi/Amadeus APIs</span>
-                    </div>
-                    <div class="project-links">
-                        <span class="project-link project-link-disabled">
-                            <i data-lucide="external-link"></i> Offline
-                        </span>
-                        <span class="project-link project-link-disabled">
-                            <i data-lucide="lock"></i> Private
-                        </span>
-                        <div class="project-action-btns">
-                            <button class="btn-console" data-project="logic" title="Developer Console">
-                                <i data-lucide="terminal"></i> Console
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Wayfare Guide -->
                 <div class="project-card mobile ai">
                     <div class="project-header">
@@ -463,7 +529,7 @@
                         </span>
                     </div>
                     <p class="project-desc">
-                        Road-trip narrator and storybook application utilizing real-time GPS coordinates. Streams geographic folklore and cultural insights dynamically about surrounding landscapes.
+                        GPS road-trip narration companion. Listens to coordinate deltas to dynamically narrate context-rich geographic folklore and cultural insights about surrounding national parks.
                     </p>
                     <div class="project-tags">
                         <span>Flutter</span>
@@ -489,9 +555,195 @@
                     </div>
                 </div>
 
+                <!-- Wayfare Logic -->
+                <div class="project-card webapp">
+                    <div class="project-header">
+                        <h3 class="project-title">Wayfare Logic</h3>
+                        <span class="project-status status-design">
+                            <span class="status-dot"></span> In Design
+                        </span>
+                    </div>
+                    <p class="project-desc">
+                        Conversational travel routing engine connecting flight, rail, and regional bus itineraries with an empathy-driven layover hotel matcher.
+                    </p>
+                    <div class="project-tags">
+                        <span>React</span>
+                        <span>Vite</span>
+                        <span>Firebase</span>
+                        <span>Kiwi/Amadeus APIs</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="project-link project-link-disabled">
+                            <i data-lucide="external-link"></i> Offline
+                        </span>
+                        <span class="project-link project-link-disabled">
+                            <i data-lucide="lock"></i> Private
+                        </span>
+                        <div class="project-action-btns">
+                            <button class="btn-console" data-project="logic" title="Developer Console">
+                                <i data-lucide="terminal"></i> Console
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wayfare Network -->
+                <div class="project-card webapp">
+                    <div class="project-header">
+                        <h3 class="project-title">Wayfare Network</h3>
+                        <span class="project-status status-design">
+                            <span class="status-dot"></span> In Design
+                        </span>
+                    </div>
+                    <p class="project-desc">
+                        Mission-driven hospitality directory connecting travelers with local community hosts through a radical hospitality charter and unlisted video intent filtering.
+                    </p>
+                    <div class="project-tags">
+                        <span>React</span>
+                        <span>TypeScript</span>
+                        <span>Firebase</span>
+                        <span>Community PWYW</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="project-link project-link-disabled">
+                            <i data-lucide="external-link"></i> Offline
+                        </span>
+                        <span class="project-link project-link-disabled">
+                            <i data-lucide="lock"></i> Private
+                        </span>
+                        <div class="project-action-btns">
+                            <button class="btn-console" data-project="network" title="Developer Console">
+                                <i data-lucide="terminal"></i> Console
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
+
+    <!-- Career & Transformation Journey Section (Moved to Bottom) -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>🧑‍💻 Career & Transformation Journey</h2>
+                <p>Bridging human-centered change management, enterprise cloud infrastructure, and autonomous agentic engineering</p>
+            </div>
+
+            <div class="journey-grid">
+                <!-- Timeline Column -->
+                <div class="timeline-container">
+                    <div class="timeline-card">
+                        <div class="timeline-dot"></div>
+                        <span class="timeline-period">Phase 01 • Social Impact & ESF Delivery</span>
+                        <h4>Autonomy & Grassroots Employment Outcomes</h4>
+                        <p>
+                            Managed <strong>Motivation United</strong> (funded by the European Social Fund), helping 80 jobseekers with migration backgrounds find sustainable careers. Delivered 100% of milestones <strong>6 months ahead of schedule and well within budget</strong>.
+                        </p>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="timeline-dot"></div>
+                        <span class="timeline-period">Phase 02 • Founder & Matchmaker</span>
+                        <h4>Talent2connect & Professional BA/PM Foundation</h4>
+                        <p>
+                            Founded non-profit <strong>Talent2connect</strong>, bridging corporate employers with grassroots employment groups via major matchmaking events while formalizing credentials in Technical Project Management and Business Analysis.
+                        </p>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="timeline-dot"></div>
+                        <span class="timeline-period">Phase 03 • Legal Tech PM & Enterprise Cloud Migration</span>
+                        <h4>40 Departments, 750+ Users at Baha'i World Centre</h4>
+                        <p>
+                            Transitioned to IT PM & Change Management in legal tech, then spearheaded the enterprise cloud migration to SharePoint at the <strong>Baha'i World Centre</strong>, moving 40 departments (750+ people) ahead of schedule and within budget.
+                        </p>
+                    </div>
+
+                    <div class="timeline-card highlighted">
+                        <div class="timeline-dot active"></div>
+                        <span class="timeline-period">Phase 04 • Agentic Transformation Leader</span>
+                        <h4>Codifying Governed Multi-Agent Product Delivery</h4>
+                        <p>
+                            Today, I apply disciplined PM governance to autonomous agentic teams. By combining strict specifications, in-tenant security guardrails, and deterministic verification gates, I deliver high-impact enterprise solutions (like <strong>LexSecure</strong>) and robust consumer applications in days rather than quarters.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Skills & Governance Stack Column -->
+                <div class="about-skills">
+                    <div class="stack-group">
+                        <h3><i data-lucide="shield-check"></i> Enterprise & PM Governance</h3>
+                        <div class="stack-items">
+                            <span class="tag">In-Tenant Sovereignty</span>
+                            <span class="tag">Zero Data Retention (ZDR)</span>
+                            <span class="tag">Change Management</span>
+                            <span class="tag">SharePoint Online</span>
+                            <span class="tag">M365 & Azure RBAC</span>
+                            <span class="tag">Agile / Scrum Delivery</span>
+                        </div>
+                    </div>
+
+                    <div class="stack-group">
+                        <h3><i data-lucide="cpu"></i> AI & Agentic Orchestration</h3>
+                        <div class="stack-items">
+                            <span class="tag">Gemini 3.8 Live</span>
+                            <span class="tag">Gemini 3.8 Flash</span>
+                            <span class="tag">Foundry GPT-6 Luna</span>
+                            <span class="tag">Multi-Agent SDLC</span>
+                            <span class="tag">Ephemeral RAM Streaming</span>
+                            <span class="tag">Deterministic Rules Engines</span>
+                        </div>
+                    </div>
+
+                    <div class="stack-group">
+                        <h3><i data-lucide="code-2"></i> Full-Stack Engineering</h3>
+                        <div class="stack-items">
+                            <span class="tag">Flutter & Dart</span>
+                            <span class="tag">React 19 & TypeScript</span>
+                            <span class="tag">Web Audio API</span>
+                            <span class="tag">Node.js / Express</span>
+                            <span class="tag">FastAPI & Python</span>
+                            <span class="tag">Firebase Firestore</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="contact-card">
+                <h3>📬 Let's Connect!</h3>
+                <p>Feel free to reach out to discuss Agentic Transformation, in-tenant enterprise AI architecture, or product leadership.</p>
+                
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/sam-ebrahimi/" target="_blank" class="contact-icon" title="LinkedIn">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://github.com/Skillith" target="_blank" class="contact-icon" title="GitHub">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="mailto:sam.ebrahimi.1989@gmail.com" class="contact-icon" title="Email">
+                        <i data-lucide="mail"></i>
+                    </a>
+                    <button class="contact-icon" id="contactQrBtn" title="Show Phone QR Pass">
+                        <i data-lucide="qr-code"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Saman Ebrahimi. Governed Agentic Engineering.</p>
+        </div>
+    </footer>
 
     <!-- Interactive Terminal Modal -->
     <div class="modal-overlay" id="consoleModal">
@@ -621,39 +873,166 @@
         </div>
     </div>
 
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <div class="container">
-            <div class="contact-card">
-                <h3>📬 Let's Connect!</h3>
-                <p>Feel free to reach out, discuss AI agent development, or collaborate on multi-modal travel software.</p>
+    <!-- LexSecure Request Personal Demo Modal -->
+    <div class="modal-overlay" id="demoRequestModal">
+        <div class="demo-modal-window">
+            <div class="demo-modal-header">
+                <div class="demo-modal-title-wrap">
+                    <div class="demo-shield-icon"><i data-lucide="shield-check"></i></div>
+                    <div>
+                        <h3>Request Personal LexSecure Demo</h3>
+                        <p>1-on-1 walkthrough of the in-tenant M365 architecture & legal redlining workstation</p>
+                    </div>
+                </div>
+                <button class="vitals-close-btn" id="demoModalClose" aria-label="Close modal">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <form id="demoRequestForm" class="demo-form">
+                <!-- Anti-spam Honeypot -->
+                <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
                 
-                <div class="contact-links">
-                    <a href="https://www.linkedin.com/in/sam-ebrahimi/" target="_blank" class="contact-icon" title="LinkedIn">
-                        <i data-lucide="linkedin"></i>
-                    </a>
-                    <a href="https://github.com/Skillith" target="_blank" class="contact-icon" title="GitHub">
-                        <i data-lucide="github"></i>
-                    </a>
-                    <a href="mailto:sam.ebrahimi.1989@gmail.com" class="contact-icon" title="Email">
-                        <i data-lucide="mail"></i>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="demoName">Full Name *</label>
+                        <input type="text" id="demoName" name="name" required placeholder="e.g. Jane Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="demoEmail">Work Email *</label>
+                        <input type="email" id="demoEmail" name="email" required placeholder="jane.doe@organization.org">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="demoCompany">Organization / Institution *</label>
+                        <input type="text" id="demoCompany" name="organization" required placeholder="Company or Legal Department">
+                    </div>
+                    <div class="form-group">
+                        <label for="demoRole">Your Role</label>
+                        <input type="text" id="demoRole" name="role" placeholder="e.g. General Counsel, Head of IT, TPM">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="demoNotes">What would you like to explore during the walkthrough?</label>
+                    <textarea id="demoNotes" name="notes" rows="3" placeholder="e.g. In-tenant Zero Data Retention architecture, SharePoint synchronization, or automated Word playbook redlining..."></textarea>
+                </div>
+
+                <div class="demo-form-footer">
+                    <div class="demo-privacy-note">
+                        <i data-lucide="lock"></i>
+                        <span>Zero spam. Notification is sent directly to Sam Ebrahimi for confidential scheduling.</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="demoSubmitBtn">
+                        <i data-lucide="send"></i>
+                        <span>Submit Request</span>
+                    </button>
+                </div>
+                <div class="demo-status-msg" id="demoStatusMsg"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- In-Person Phone QR Pass Modal -->
+    <div class="modal-overlay" id="qrModal">
+        <div class="qr-modal-window">
+            <div class="qr-modal-header">
+                <div class="qr-title-wrap">
+                    <i data-lucide="smartphone"></i>
+                    <div>
+                        <h3>In-Person Portfolio Pass</h3>
+                        <p>Scan to view full portfolio & live systems on your device</p>
+                    </div>
+                </div>
+                <button class="vitals-close-btn" id="qrModalClose" aria-label="Close modal">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="qr-card-body">
+                <div class="qr-frame">
+                    <img src="assets/skillith-qr.svg" alt="Scan QR code for Sam Ebrahimi Portfolio" class="qr-image" id="qrImageElement">
+                </div>
+                <div class="qr-card-info">
+                    <h4>Sam Ebrahimi</h4>
+                    <p class="qr-role">Agentic Transformation Leader & Technical PM</p>
+                    <p class="qr-url">https://skillith.github.io</p>
+                </div>
+                <div class="qr-actions">
+                    <button class="btn btn-secondary" id="btnCopyPortfolioLink">
+                        <i data-lucide="copy"></i>
+                        <span id="copyLinkText">Copy URL</span>
+                    </button>
+                    <a href="assets/skillith-qr.svg" download="Sam-Ebrahimi-Portfolio-QR.svg" class="btn btn-primary">
+                        <i data-lucide="download"></i>
+                        <span>Save QR</span>
                     </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Saman Ebrahimi. Built with Antigravity AI.</p>
+    <!-- Voice & Text AI Concierge Drawer -->
+    <div class="concierge-drawer" id="aiConciergeDrawer">
+        <div class="drawer-header">
+            <div class="drawer-title-wrap">
+                <div class="drawer-ai-badge">
+                    <span class="drawer-ai-pulse"></span>
+                    <i data-lucide="bot"></i>
+                </div>
+                <div>
+                    <h4>Sam's AI Concierge</h4>
+                    <span class="drawer-status" id="drawerStatusText">Connected • Ready to assist</span>
+                </div>
+            </div>
+            <div class="drawer-controls">
+                <button class="drawer-mic-toggle" id="drawerMicToggle" title="Toggle Live Voice">
+                    <i data-lucide="mic"></i>
+                </button>
+                <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close concierge">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
         </div>
-    </footer>
 
-    <script src="app.js?v=1.0.7"></script>
+        <!-- Voice Visualizer Waveform -->
+        <div class="drawer-voice-bar" id="drawerVoiceBar" style="display: none;">
+            <div class="waveform-anim">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <span class="voice-state-label" id="voiceStateLabel">Listening...</span>
+        </div>
+
+        <div class="drawer-messages" id="drawerMessages">
+            <div class="ai-msg">
+                <div class="msg-avatar"><i data-lucide="bot"></i></div>
+                <div class="msg-content">
+                    <p>Hi! I'm Sam's AI Portfolio Concierge. I can answer questions about his <strong>enterprise legal workstation (LexSecure)</strong>, his <strong>agentic transformation workflows</strong>, or his <strong>shipped games & apps</strong>. Ask away, or tap the mic to speak!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="drawer-input-row">
+            <input type="text" id="drawerInput" placeholder="Ask a question..." aria-label="Ask concierge">
+            <button id="drawerSendBtn" aria-label="Send message">
+                <i data-lucide="send"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Concierge Trigger Button -->
+    <button class="floating-ai-btn" id="floatingAiTrigger" title="Talk to Sam's AI Concierge">
+        <span class="floating-pulse"></span>
+        <i data-lucide="sparkles"></i>
+        <span class="floating-label">Ask Sam's AI</span>
+    </button>
+
+    <script src="app.js?v=2.0.0"></script>
     <script>
         // Initialize Lucide Icons
-        lucide.createIcons();
+        if (window.lucide) {
+            lucide.createIcons();
+        }
     </script>
 </body>
 </html>
