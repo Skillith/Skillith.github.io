@@ -38,47 +38,11 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
-            <div class="hero-subtitle-container">
-                <span class="live-dot-ping"></span>
-                <span>Agentic Transformation & Technical PM</span>
-            </div>
             <h1>Hi, I'm Sam Ebrahimi</h1>
             
-            <div class="typing-container">
-                <span class="typing-text"></span><span class="typing-cursor">|</span>
-            </div>
-
             <p class="hero-description">
-                I am a Technical Project Manager & Change Leader who turns complex enterprise and consumer ideas into governed, production-ready software through disciplined multi-agent workflows.
+                Technical Project Manager & Change Leader turning complex enterprise and consumer ideas into governed, production-ready software through disciplined multi-agent workflows.
             </p>
-
-            <!-- Live Proof Strip -->
-            <div class="proof-strip">
-                <div class="proof-item">
-                    <span class="proof-num">11</span>
-                    <span class="proof-label">Shipped Systems</span>
-                </div>
-                <div class="proof-divider"></div>
-                <div class="proof-item">
-                    <span class="proof-num">750+</span>
-                    <span class="proof-label">Enterprise Users Migrated</span>
-                </div>
-                <div class="proof-divider"></div>
-                <div class="proof-item">
-                    <span class="proof-num">~$0.02</span>
-                    <span class="proof-label">Doc AI Economics</span>
-                </div>
-                <div class="proof-divider"></div>
-                <div class="proof-item">
-                    <span class="proof-num">155+</span>
-                    <span class="proof-label">Automated E2E Tests</span>
-                </div>
-                <div class="proof-divider"></div>
-                <div class="proof-item">
-                    <span class="proof-num">100%</span>
-                    <span class="proof-label">Zero-Leak Verified</span>
-                </div>
-            </div>
 
             <!-- Embedded Voice & Text AI Concierge Bar -->
             <div class="concierge-hero-bar">
@@ -112,15 +76,6 @@
                     </button>
                 </div>
             </div>
-
-            <div class="hero-cta">
-                <a href="#enterprise" class="btn btn-primary">
-                    <i data-lucide="shield-check"></i> Explore Enterprise Work
-                </a>
-                <a href="#projects" class="btn btn-secondary">
-                    <i data-lucide="layers"></i> Shipped Apps & Games
-                </a>
-            </div>
         </div>
     </section>
 
@@ -152,47 +107,31 @@
 
                 <div class="enterprise-body">
                     <div class="enterprise-narrative">
-                        <h4>The Business Problem & The Idea</h4>
-                        <p>
-                            Institutional legal departments face strict regulatory and compliance barriers against multi-tenant third-party SaaS AI. <strong>LexSecure</strong> solves this by running <strong>100% inside the organization's Microsoft 365 and Azure tenant boundary</strong>. It guarantees absolute data sovereignty, zero base-model training, and zero reliance on external cloud vendors.
+                        <p class="enterprise-summary-lead">
+                            Institutional legal departments cannot use multi-tenant third-party SaaS AI due to strict compliance barriers. <strong>LexSecure</strong> solves this by running <strong>100% inside the organization's Microsoft 365 and Azure tenant boundary</strong>—ensuring absolute data sovereignty, zero base-model training, and zero reliance on external cloud vendors.
                         </p>
                     </div>
 
-                    <div class="enterprise-pillars-grid">
-                        <div class="pillar-card">
-                            <div class="pillar-icon"><i data-lucide="zap"></i></div>
-                            <h5>Zero Data Retention & Ephemeral RAM</h5>
-                            <p>Powered exclusively by Microsoft Foundry's GPT-6 Luna under commercial ZDR terms. 32KB duplex memory streaming directly into Azure Document Intelligence—zero document files are ever written to server disks.</p>
-                        </div>
-                        <div class="pillar-card">
-                            <div class="pillar-icon"><i data-lucide="file-check"></i></div>
-                            <h5>Playbook-Driven .docx Redlining</h5>
-                            <p>Evaluates contracts against institutional playbook standards. Automatically generates valid native Microsoft Word (<code>.docx</code>) documents with tracked changes, counter-proposals, and jurisdictional overrides.</p>
-                        </div>
-                        <div class="pillar-card">
-                            <div class="pillar-icon"><i data-lucide="sliders"></i></div>
-                            <h5>Backoffice Governance & SharePoint Sync</h5>
-                            <p>Cryptographically locks Graph API access strictly to designated legal site collections. Features 5-tier sensitivity watermarking, automated statutory retention countdowns, and instant Emergency Legal Hold overrides.</p>
-                        </div>
-                    </div>
-
-                    <!-- Enterprise Unit Economics Strip -->
-                    <div class="enterprise-economics-banner">
-                        <div class="econ-stat">
-                            <span class="econ-val">~$0.02</span>
-                            <span class="econ-lbl">Per Agreement (Inference & Layout)</span>
-                        </div>
-                        <div class="econ-divider"></div>
-                        <div class="econ-stat">
-                            <span class="econ-val">&lt; $21</span>
-                            <span class="econ-lbl">Pilot Budget (Enforced $50 Hard Bicep Cap)</span>
-                        </div>
-                        <div class="econ-divider"></div>
-                        <div class="econ-stat">
-                            <span class="econ-val">0 MB</span>
-                            <span class="econ-lbl">Server Disk Footprint (Ephemeral RAM)</span>
-                        </div>
-                    </div>
+                    <ul class="enterprise-lean-bullets">
+                        <li>
+                            <i data-lucide="shield-check"></i>
+                            <div>
+                                <strong>100% In-Tenant M365 & Azure:</strong> Runs entirely within the client's commercial tenant under GPT-6 Luna Zero Data Retention (ZDR) with 32KB ephemeral RAM streaming (0 MB disk footprint).
+                            </div>
+                        </li>
+                        <li>
+                            <i data-lucide="file-check"></i>
+                            <div>
+                                <strong>Playbook-Driven .docx Redlining:</strong> Evaluates agreements against institutional legal playbook standards, automatically outputting native Microsoft Word files with tracked changes at ~$0.02/agreement.
+                            </div>
+                        </li>
+                        <li>
+                            <i data-lucide="lock"></i>
+                            <div>
+                                <strong>SharePoint Governance & Legal Hold:</strong> Graph API access cryptographically locked to designated legal site collections via Sites.Selected, with 5-tier sensitivity watermarking and statutory retention controls.
+                            </div>
+                        </li>
+                    </ul>
 
                     <!-- Enterprise Actions -->
                     <div class="enterprise-actions">
@@ -230,13 +169,13 @@
             <!-- Project Cards Grid -->
             <div class="projects-grid">
 
-                <!-- Last Breath (NEW) -->
-                <div class="project-card webapp ai" id="cardLastBreath">
+                <!-- TerraCatch -->
+                <div class="project-card mobile ai">
                     <div class="project-header">
                         <div class="project-title-wrap">
-                            <h3 class="project-title">Last Breath</h3>
-                            <span class="user-stat-badge" data-stat="last_breath_users" data-project="last-breath" title="Click to view App Vitals">
-                                <i data-lucide="users"></i> <span class="stat-num">24</span> Players
+                            <h3 class="project-title">TerraCatch</h3>
+                            <span class="user-stat-badge" data-stat="terracatch_users" data-project="terracatch" title="Click to view App Vitals">
+                                <i data-lucide="users"></i> <span class="stat-num">293</span> Players
                             </span>
                         </div>
                         <span class="project-status status-live">
@@ -244,33 +183,32 @@
                         </span>
                     </div>
                     <p class="project-desc">
-                        Modern mobile-first social deduction (Werewolf / Clocktower) companion PWA. Features a 100% deterministic TypeScript night-resolution engine, Storyteller Digital Grimoire, and zero-asset procedural Web Audio synthesizer.
+                        Real-world wildlife capture and stats game. Uses computer vision video analysis to identify local animal species and generate customized lore-driven battle profiles.
                     </p>
                     <div class="project-tags">
-                        <span>React 19</span>
-                        <span>TypeScript</span>
-                        <span>Web Audio API</span>
-                        <span>155 Tests</span>
-                        <span>PWA</span>
+                        <span>Flutter</span>
+                        <span>FastAPI</span>
+                        <span>OpenAI API</span>
+                        <span>Firebase</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://last-breath-game-2026.web.app" target="_blank" class="project-link">
-                            <i data-lucide="external-link"></i> Live App
+                        <a href="https://terracatch.online" target="_blank" class="project-link">
+                            <i data-lucide="external-link"></i> Live Web
                         </a>
                         <span class="project-link project-link-disabled">
                             <i data-lucide="lock"></i> Private
                         </span>
                         <div class="project-action-btns">
-                            <button class="btn-vitals" data-project="last-breath" title="View Game Vitals & Test Suite">
+                            <button class="btn-vitals" data-project="terracatch" title="View Creator Stats & Conversion Funnel">
                                 <i data-lucide="bar-chart-2"></i> Vitals
                             </button>
-                            <button class="btn-console" data-project="last-breath" title="Inspect Rules Engine Console">
+                            <button class="btn-console" data-project="terracatch" title="Developer Console">
                                 <i data-lucide="terminal"></i> Console
                             </button>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Morn & Eve -->
                 <div class="project-card mobile ai">
                     <div class="project-header">
@@ -314,13 +252,13 @@
                     </div>
                 </div>
 
-                <!-- TerraCatch -->
-                <div class="project-card mobile ai">
+                <!-- Dawn-Breakers Companion -->
+                <div class="project-card webapp">
                     <div class="project-header">
                         <div class="project-title-wrap">
-                            <h3 class="project-title">TerraCatch</h3>
-                            <span class="user-stat-badge" data-stat="terracatch_users" data-project="terracatch" title="Click to view App Vitals">
-                                <i data-lucide="users"></i> <span class="stat-num">293</span> Players
+                            <h3 class="project-title">Dawn-Breakers Companion</h3>
+                            <span class="user-stat-badge" data-stat="dawn_breakers_users" data-project="dawn-breakers" title="Click to view App Vitals">
+                                <i data-lucide="book-open"></i> <span class="stat-num">85</span> Scholars
                             </span>
                         </div>
                         <span class="project-status status-live">
@@ -328,26 +266,26 @@
                         </span>
                     </div>
                     <p class="project-desc">
-                        Real-world wildlife capture and stats game. Uses computer vision video analysis to identify local animal species and generate customized lore-driven battle profiles.
+                        Offline-first historical narrative study companion featuring HTML5 canvas force-directed connection graphs, typo-tolerant fuzzy search, and offline Word (.docx) exporting.
                     </p>
                     <div class="project-tags">
-                        <span>Flutter</span>
-                        <span>FastAPI</span>
-                        <span>OpenAI API</span>
-                        <span>Firebase</span>
+                        <span>React 19</span>
+                        <span>Vite</span>
+                        <span>Canvas Graph</span>
+                        <span>PWA</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://terracatch.online" target="_blank" class="project-link">
-                            <i data-lucide="external-link"></i> Live Web
+                        <a href="https://skillith.github.io/dawn-breakers-companion/" target="_blank" class="project-link">
+                            <i data-lucide="external-link"></i> Live App
                         </a>
-                        <span class="project-link project-link-disabled">
-                            <i data-lucide="lock"></i> Private
-                        </span>
+                        <a href="https://github.com/Skillith/dawn-breakers-companion" target="_blank" class="project-link">
+                            <i data-lucide="github"></i> Code
+                        </a>
                         <div class="project-action-btns">
-                            <button class="btn-vitals" data-project="terracatch" title="View Creator Stats & Conversion Funnel">
+                            <button class="btn-vitals" data-project="dawn-breakers" title="View Creator Stats & Conversion Funnel">
                                 <i data-lucide="bar-chart-2"></i> Vitals
                             </button>
-                            <button class="btn-console" data-project="terracatch" title="Developer Console">
+                            <button class="btn-console" data-project="dawn-breakers" title="Developer Console">
                                 <i data-lucide="terminal"></i> Console
                             </button>
                         </div>
@@ -395,46 +333,6 @@
                     </div>
                 </div>
 
-                <!-- Dalil Notecard -->
-                <div class="project-card webapp ai">
-                    <div class="project-header">
-                        <div class="project-title-wrap">
-                            <h3 class="project-title">Dalil Notecard</h3>
-                            <span class="user-stat-badge" data-stat="dalil_users" data-project="dalil" title="Click to view App Vitals">
-                                <i data-lucide="users"></i> <span class="stat-num">9</span> Users
-                            </span>
-                        </div>
-                        <span class="project-status status-live">
-                            <span class="status-dot"></span> Live
-                        </span>
-                    </div>
-                    <p class="project-desc">
-                        Hands-free tour guide assistant that transcribes speech in real time and checks off talking points automatically via local keyword matching and adaptive API throttling.
-                    </p>
-                    <div class="project-tags">
-                        <span>React</span>
-                        <span>TypeScript</span>
-                        <span>Speech API</span>
-                        <span>Gemini API</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://dalil-notecard.web.app/" target="_blank" class="project-link">
-                            <i data-lucide="external-link"></i> Live App
-                        </a>
-                        <span class="project-link project-link-disabled">
-                            <i data-lucide="lock"></i> Private
-                        </span>
-                        <div class="project-action-btns">
-                            <button class="btn-vitals" data-project="dalil" title="View Creator Stats & Conversion Funnel">
-                                <i data-lucide="bar-chart-2"></i> Vitals
-                            </button>
-                            <button class="btn-console" data-project="dalil" title="Developer Console">
-                                <i data-lucide="terminal"></i> Console
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Mailbox Janitor -->
                 <div class="project-card webapp ai">
                     <div class="project-header">
@@ -475,13 +373,13 @@
                     </div>
                 </div>
 
-                <!-- Dawn-Breakers Companion -->
-                <div class="project-card webapp">
+                <!-- Last Breath (NEW) -->
+                <div class="project-card webapp ai" id="cardLastBreath">
                     <div class="project-header">
                         <div class="project-title-wrap">
-                            <h3 class="project-title">Dawn-Breakers Companion</h3>
-                            <span class="user-stat-badge" data-stat="dawn_breakers_users" data-project="dawn-breakers" title="Click to view App Vitals">
-                                <i data-lucide="book-open"></i> <span class="stat-num">85</span> Scholars
+                            <h3 class="project-title">Last Breath</h3>
+                            <span class="user-stat-badge" data-stat="last_breath_users" data-project="last-breath" title="Click to view App Vitals">
+                                <i data-lucide="users"></i> <span class="stat-num">24</span> Players
                             </span>
                         </div>
                         <span class="project-status status-live">
@@ -489,26 +387,27 @@
                         </span>
                     </div>
                     <p class="project-desc">
-                        Offline-first historical narrative study companion featuring HTML5 canvas force-directed connection graphs, typo-tolerant fuzzy search, and offline Word (.docx) exporting.
+                        Modern mobile-first social deduction (Werewolf / Clocktower) companion PWA. Features a 100% deterministic TypeScript night-resolution engine, Storyteller Digital Grimoire, and zero-asset procedural Web Audio synthesizer.
                     </p>
                     <div class="project-tags">
                         <span>React 19</span>
-                        <span>Vite</span>
-                        <span>Canvas Graph</span>
+                        <span>TypeScript</span>
+                        <span>Web Audio API</span>
+                        <span>155 Tests</span>
                         <span>PWA</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://skillith.github.io/dawn-breakers-companion/" target="_blank" class="project-link">
+                        <a href="https://last-breath-game-2026.web.app" target="_blank" class="project-link">
                             <i data-lucide="external-link"></i> Live App
                         </a>
-                        <a href="https://github.com/Skillith/dawn-breakers-companion" target="_blank" class="project-link">
-                            <i data-lucide="github"></i> Code
-                        </a>
+                        <span class="project-link project-link-disabled">
+                            <i data-lucide="lock"></i> Private
+                        </span>
                         <div class="project-action-btns">
-                            <button class="btn-vitals" data-project="dawn-breakers" title="View Creator Stats & Conversion Funnel">
+                            <button class="btn-vitals" data-project="last-breath" title="View Game Vitals & Test Suite">
                                 <i data-lucide="bar-chart-2"></i> Vitals
                             </button>
-                            <button class="btn-console" data-project="dawn-breakers" title="Developer Console">
+                            <button class="btn-console" data-project="last-breath" title="Inspect Rules Engine Console">
                                 <i data-lucide="terminal"></i> Console
                             </button>
                         </div>
@@ -549,6 +448,46 @@
                                 <i data-lucide="bar-chart-2"></i> Vitals
                             </button>
                             <button class="btn-console" data-project="guide" title="Developer Console">
+                                <i data-lucide="terminal"></i> Console
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dalil Notecard -->
+                <div class="project-card webapp ai">
+                    <div class="project-header">
+                        <div class="project-title-wrap">
+                            <h3 class="project-title">Dalil Notecard</h3>
+                            <span class="user-stat-badge" data-stat="dalil_users" data-project="dalil" title="Click to view App Vitals">
+                                <i data-lucide="users"></i> <span class="stat-num">9</span> Users
+                            </span>
+                        </div>
+                        <span class="project-status status-live">
+                            <span class="status-dot"></span> Live
+                        </span>
+                    </div>
+                    <p class="project-desc">
+                        Hands-free tour guide assistant that transcribes speech in real time and checks off talking points automatically via local keyword matching and adaptive API throttling.
+                    </p>
+                    <div class="project-tags">
+                        <span>React</span>
+                        <span>TypeScript</span>
+                        <span>Speech API</span>
+                        <span>Gemini API</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://dalil-notecard.web.app/" target="_blank" class="project-link">
+                            <i data-lucide="external-link"></i> Live App
+                        </a>
+                        <span class="project-link project-link-disabled">
+                            <i data-lucide="lock"></i> Private
+                        </span>
+                        <div class="project-action-btns">
+                            <button class="btn-vitals" data-project="dalil" title="View Creator Stats & Conversion Funnel">
+                                <i data-lucide="bar-chart-2"></i> Vitals
+                            </button>
+                            <button class="btn-console" data-project="dalil" title="Developer Console">
                                 <i data-lucide="terminal"></i> Console
                             </button>
                         </div>

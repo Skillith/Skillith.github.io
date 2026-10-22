@@ -753,7 +753,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // Submit to secure Firebase Cloud Function / Email Webhook
-                const endpoint = 'https://us-central1-pingquest-rpg.cloudfunctions.net/portfolioDemoRequest';
+                const endpoint = 'https://us-central1-skillith-portfolio.cloudfunctions.net/portfolioDemoRequest';
                 const response = await fetch(endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -782,7 +782,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Voice & Text AI Concierge with Co-Browsing Tool Calling
+    // 7. Voice & Text AI Concierge with Real-Time Gemini 3.8 Live & 3.8 Flash
     const conciergeDrawer = document.getElementById('aiConciergeDrawer');
     const floatingAiTrigger = document.getElementById('floatingAiTrigger');
     const drawerCloseBtn = document.getElementById('drawerCloseBtn');
@@ -797,8 +797,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroChatSend = document.getElementById('heroChatSend');
     const chips = document.querySelectorAll('.chip');
 
+    const BASE_FUNCTIONS_URL = 'https://us-central1-skillith-portfolio.cloudfunctions.net';
+
+    let chatHistory = [];
     let isVoiceActive = false;
-    let recognition = null;
+    let liveWs = null;
+    let micStream = null;
+    let micAudioCtx = null;
+    let micProcessor = null;
+    let playbackAudioCtx = null;
+    let activeAudioSources = [];
+    let nextAudioPlayTime = 0;
 
     function openConcierge() {
         if (conciergeDrawer) conciergeDrawer.classList.add('active');
@@ -812,10 +821,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (floatingAiTrigger) floatingAiTrigger.addEventListener('click', openConcierge);
     if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeConcierge);
 
-    function addMessage(sender, text) {
-        if (!drawerMessages) return;
+    function addMessage(sender, text, isTyping = false) {
+        if (!drawerMessages) return null;
         const msgDiv = document.createElement('div');
         msgDiv.className = sender === 'ai' ? 'ai-msg' : 'user-msg';
+        if (isTyping) msgDiv.classList.add('typing-bubble');
         const iconName = sender === 'ai' ? 'bot' : 'user';
         msgDiv.innerHTML = `
             <div class="msg-avatar"><i data-lucide="${iconName}"></i></div>
@@ -824,35 +834,42 @@ document.addEventListener('DOMContentLoaded', () => {
         drawerMessages.appendChild(msgDiv);
         drawerMessages.scrollTop = drawerMessages.scrollHeight;
         if (window.lucide) window.lucide.createIcons();
+        return msgDiv;
     }
 
-    // Dispatch non-blocking UI co-browsing actions
+    // Co-browsing UI tool dispatcher
     function executeUiAction(action) {
         if (!action) return;
-        if (action.type === 'focusProjectCard') {
-            const card = document.getElementById(action.cardId) || document.querySelector(`[data-project="${action.projectId}"]`)?.closest('.project-card');
-            if (card) {
-                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                card.style.outline = '2px solid #00f2fe';
-                card.style.boxShadow = '0 0 25px rgba(6, 182, 212, 0.4)';
-                setTimeout(() => {
-                    card.style.outline = '';
-                    card.style.boxShadow = '';
-                }, 3000);
+        try {
+            if (action.type === 'focusProjectCard') {
+                const card = document.getElementById(action.cardId) || 
+                             document.querySelector(`[data-project="${action.projectId}"]`)?.closest('.project-card');
+                if (card) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    card.style.outline = '2px solid #00f2fe';
+                    card.style.boxShadow = '0 0 25px rgba(6, 182, 212, 0.4)';
+                    setTimeout(() => {
+                        card.style.outline = '';
+                        card.style.boxShadow = '';
+                    }, 3000);
+                }
+            } else if (action.type === 'openProjectVitals') {
+                openVitalsModal(action.projectId);
+            } else if (action.type === 'openProjectConsole') {
+                openConsoleModal(action.projectId);
+            } else if (action.type === 'openLexSecureDemoModal') {
+                openDemoModal();
+            } else if (action.type === 'openQrModal') {
+                openQrModal();
+            } else if (action.type === 'filterPortfolio') {
+                applyFilter(action.filter || action.category);
             }
-        } else if (action.type === 'openProjectVitals') {
-            openVitalsModal(action.projectId);
-        } else if (action.type === 'openProjectConsole') {
-            openConsoleModal(action.projectId);
-        } else if (action.type === 'openLexSecureDemoModal') {
-            openDemoModal();
-        } else if (action.type === 'openQrModal') {
-            openQrModal();
-        } else if (action.type === 'filterPortfolio') {
-            applyFilter(action.filter);
+        } catch (err) {
+            console.warn('[UI ACTION ERROR]', err);
         }
     }
 
+    // Multi-Turn Text Chat with Gemini 3.8 Flash (No Local Fallback)
     async function handleUserQuery(queryText) {
         if (!queryText || !queryText.trim()) return;
         openConcierge();
@@ -860,48 +877,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const lower = queryText.toLowerCase();
 
-        // Immediate responsive co-browsing intent matching
+        // Responsive immediate visual intent matching while AI generates reply
         if (lower.includes('lexsecure') || lower.includes('contract') || lower.includes('legal')) {
             executeUiAction({ type: 'focusProjectCard', cardId: 'cardLexSecure' });
         } else if (lower.includes('last breath') || lower.includes('werewolf') || lower.includes('clocktower')) {
             executeUiAction({ type: 'focusProjectCard', cardId: 'cardLastBreath' });
+        } else if (lower.includes('terracatch') || lower.includes('wildlife')) {
+            executeUiAction({ type: 'focusProjectCard', cardId: 'cardTerraCatch' });
+        } else if (lower.includes('morn') || lower.includes('spiritual')) {
+            executeUiAction({ type: 'focusProjectCard', cardId: 'cardMornEve' });
         } else if (lower.includes('qr') || lower.includes('pass') || lower.includes('phone')) {
             executeUiAction({ type: 'openQrModal' });
         }
 
-        // Send to Firebase Cloud Function (gemini-3.8-flash)
+        // Show typing indicator
+        const typingMsg = addMessage('ai', 'Thinking...', true);
+
         try {
-            const endpoint = 'https://us-central1-pingquest-rpg.cloudfunctions.net/portfolioChat';
+            const endpoint = `${BASE_FUNCTIONS_URL}/portfolioChat`;
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: queryText })
+                body: JSON.stringify({
+                    message: queryText,
+                    history: chatHistory
+                })
             });
 
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            if (!response.ok) {
+                throw new Error(`Server returned status ${response.status}`);
+            }
+
             const data = await response.json();
-            
-            addMessage('ai', data.reply);
+            const reply = data.reply || "I'm ready to answer any questions about Sam's work!";
+
+            if (typingMsg) {
+                typingMsg.querySelector('.msg-content p').innerHTML = reply;
+                typingMsg.classList.remove('typing-bubble');
+            } else {
+                addMessage('ai', reply);
+            }
+
+            // Update conversation memory
+            chatHistory.push({ role: 'user', text: queryText });
+            chatHistory.push({ role: 'model', text: reply });
+            if (chatHistory.length > 10) chatHistory = chatHistory.slice(-10);
+
             if (data.uiAction) {
                 executeUiAction(data.uiAction);
             }
         } catch (err) {
-            // Curated grounded intelligence response if backend is initializing
-            let reply = "I'm Sam's AI Portfolio Concierge! ";
-            if (lower.includes('lexsecure') || lower.includes('legal') || lower.includes('contract')) {
-                reply = "<strong>LexSecure</strong> is Sam's enterprise in-tenant contract intelligence platform. It runs 100% inside the client's Microsoft 365 and Azure tenant boundary with Zero Data Retention (ZDR) and 32KB ephemeral RAM streaming. Would you like to request a personal demo walkthrough?";
-                executeUiAction({ type: 'focusProjectCard', cardId: 'cardLexSecure' });
-            } else if (lower.includes('last breath') || lower.includes('werewolf')) {
-                reply = "<strong>Last Breath</strong> is Sam's social deduction companion PWA! It features a 100% deterministic TypeScript night-resolution engine and a zero-asset procedural Web Audio synthesizer, verified by 155 automated Vitest/E2E test suites.";
-                executeUiAction({ type: 'focusProjectCard', cardId: 'cardLastBreath' });
-            } else if (lower.includes('agent') || lower.includes('workflow') || lower.includes('delivery')) {
-                reply = "Sam orchestrates AI agents using disciplined Technical PM governance: translating business requirements into formal specs, enforcing in-tenant zero-trust boundaries, and running automated test gatekeepers before releasing to production.";
-            } else if (lower.includes('bwc') || lower.includes('migration') || lower.includes('department')) {
-                reply = "At the Baha'i World Centre, Sam led a large-scale cloud migration to SharePoint, successfully transitioning 40 departments (750+ users) ahead of schedule and within budget.";
+            console.error('[CHAT ERROR]', err);
+            const errorReply = "I am temporarily unable to connect to the portfolio intelligence backend. Please try again in a few moments.";
+            if (typingMsg) {
+                typingMsg.querySelector('.msg-content p').textContent = errorReply;
+                typingMsg.classList.remove('typing-bubble');
             } else {
-                reply += "Sam is an Agentic Transformation Leader and Technical PM with 11 shipped systems, in-tenant enterprise architecture expertise, and a track record of on-time cloud delivery.";
+                addMessage('ai', errorReply);
             }
-            addMessage('ai', reply);
         }
     }
 
@@ -950,52 +983,238 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Voice Mode Implementation
-    function initVoiceRecognition() {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognition) {
-            alert('Speech recognition is not supported in this browser. Please use Chrome or Safari.');
-            return null;
-        }
-        const rec = new SpeechRecognition();
-        rec.continuous = false;
-        rec.interimResults = false;
-        rec.lang = 'en-US';
+    // =========================================================================
+    // Real-Time Bidirectional Gemini 3.8 Live Voice Mode (Audio in / Spoken Audio out)
+    // =========================================================================
 
-        rec.onstart = () => {
-            isVoiceActive = true;
-            if (drawerVoiceBar) drawerVoiceBar.style.display = 'flex';
-            if (drawerMicToggle) drawerMicToggle.classList.add('voice-active');
-            if (voiceStateLabel) voiceStateLabel.textContent = 'Listening to your voice...';
-        };
-
-        rec.onresult = (event) => {
-            const transcript = event.results[0][0].transcript;
-            if (voiceStateLabel) voiceStateLabel.textContent = `Processing: "${transcript}"`;
-            handleUserQuery(transcript);
-        };
-
-        rec.onerror = (event) => {
-            console.log('[VOICE ERROR]', event.error);
-            stopVoiceMode();
-        };
-
-        rec.onend = () => {
-            stopVoiceMode();
-        };
-
-        return rec;
+    function base64ToUint8(base64) {
+        const bin = atob(base64);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return bytes;
     }
 
-    function startVoiceMode() {
+    function uint8ToBase64(bytes) {
+        let binary = '';
+        const len = bytes.byteLength;
+        for (let i = 0; i < len; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+        return btoa(binary);
+    }
+
+    function stopActiveAudioPlayback() {
+        activeAudioSources.forEach(s => {
+            try { s.stop(); } catch (e) {}
+        });
+        activeAudioSources = [];
+        if (playbackAudioCtx) {
+            nextAudioPlayTime = playbackAudioCtx.currentTime;
+        }
+    }
+
+    async function startVoiceMode() {
+        if (isVoiceActive) return;
         openConcierge();
-        if (!recognition) recognition = initVoiceRecognition();
-        if (recognition) {
-            try {
-                recognition.start();
-            } catch (err) {
-                console.log('[VOICE ALREADY STARTED]', err);
+
+        isVoiceActive = true;
+        if (drawerVoiceBar) drawerVoiceBar.style.display = 'flex';
+        if (drawerMicToggle) drawerMicToggle.classList.add('voice-active');
+        if (voiceStateLabel) voiceStateLabel.textContent = 'Connecting to Gemini 3.8 Live...';
+
+        try {
+            // 1. Fetch ephemeral token from standalone skillith-portfolio Cloud Function
+            const tokenRes = await fetch(`${BASE_FUNCTIONS_URL}/portfolioLiveToken`, { method: 'POST' });
+            if (!tokenRes.ok) throw new Error(`Token fetch failed: ${tokenRes.status}`);
+            const tokenData = await tokenRes.json();
+            const ephemeralToken = tokenData.token;
+
+            // 2. Open WebSocket to Gemini Live API Constrained endpoint
+            const wsUrl = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContentConstrained?access_token=${encodeURIComponent(ephemeralToken)}`;
+            liveWs = new WebSocket(wsUrl);
+
+            // Audio Contexts setup
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            playbackAudioCtx = new AudioContext({ sampleRate: 24000 });
+            nextAudioPlayTime = playbackAudioCtx.currentTime;
+
+            liveWs.onopen = async () => {
+                if (voiceStateLabel) voiceStateLabel.textContent = 'Connected. Starting microphone...';
+
+                // Send setup frame
+                const setupMessage = {
+                    setup: {
+                        model: "models/gemini-3.8-live",
+                        generationConfig: {
+                            responseModalities: ["AUDIO"],
+                            speechConfig: {
+                                voiceConfig: {
+                                    prebuiltVoiceConfig: {
+                                        voiceName: "Puck"
+                                    }
+                                }
+                            }
+                        },
+                        systemInstruction: {
+                            parts: [{ text: tokenData.systemInstruction }]
+                        },
+                        tools: tokenData.tools || [],
+                        inputAudioTranscription: {},
+                        outputAudioTranscription: {}
+                    }
+                };
+                liveWs.send(JSON.stringify(setupMessage));
+
+                // 3. Start microphone capture at 16kHz PCM
+                try {
+                    micStream = await navigator.mediaDevices.getUserMedia({ audio: { sampleRate: 16000, channelCount: 1 } });
+                    micAudioCtx = new AudioContext({ sampleRate: 16000 });
+                    const source = micAudioCtx.createMediaStreamSource(micStream);
+                    micProcessor = micAudioCtx.createScriptProcessor(2048, 1, 1);
+
+                    source.connect(micProcessor);
+                    micProcessor.connect(micAudioCtx.destination);
+
+                    micProcessor.onaudioprocess = (e) => {
+                        if (!isVoiceActive || !liveWs || liveWs.readyState !== WebSocket.OPEN) return;
+                        const inputChannel = e.inputBuffer.getChannelData(0);
+                        const pcm16 = new Int16Array(inputChannel.length);
+                        for (let i = 0; i < inputChannel.length; i++) {
+                            const s = Math.max(-1, Math.min(1, inputChannel[i]));
+                            pcm16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+                        }
+                        const base64Data = uint8ToBase64(new Uint8Array(pcm16.buffer));
+                        liveWs.send(JSON.stringify({
+                            realtimeInput: {
+                                mediaChunks: [
+                                    {
+                                        mimeType: "audio/pcm;rate=16000",
+                                        data: base64Data
+                                    }
+                                ]
+                            }
+                        }));
+                    };
+
+                    if (voiceStateLabel) voiceStateLabel.textContent = 'Listening to your voice... Speak freely!';
+                } catch (micErr) {
+                    console.error('[MIC ERROR]', micErr);
+                    if (voiceStateLabel) voiceStateLabel.textContent = 'Microphone permission denied.';
+                    stopVoiceMode();
+                }
+            };
+
+            liveWs.onmessage = (event) => {
+                try {
+                    let msgData = event.data;
+                    if (msgData instanceof Blob) {
+                        const reader = new FileReader();
+                        reader.onload = () => handleLiveServerMessage(JSON.parse(reader.result));
+                        reader.readAsText(msgData);
+                        return;
+                    }
+                    handleLiveServerMessage(JSON.parse(msgData));
+                } catch (err) {
+                    console.warn('[LIVE WS PARSE ERROR]', err);
+                }
+            };
+
+            function handleLiveServerMessage(msg) {
+                // Interruption check (barge-in)
+                if (msg.serverContent?.interrupted) {
+                    stopActiveAudioPlayback();
+                    if (voiceStateLabel) voiceStateLabel.textContent = 'Listening...';
+                    return;
+                }
+
+                // Audio chunks from model
+                const parts = msg.serverContent?.modelTurn?.parts || [];
+                for (const part of parts) {
+                    if (part.inlineData && part.inlineData.data) {
+                        play24kHzPcmChunk(part.inlineData.data);
+                        if (voiceStateLabel) voiceStateLabel.textContent = "Sam's AI is speaking...";
+                    }
+                }
+
+                // Transcriptions
+                if (msg.serverContent?.inputTranscription?.text) {
+                    const txt = msg.serverContent.inputTranscription.text;
+                    addMessage('user', txt);
+                }
+                if (msg.serverContent?.outputTranscription?.text) {
+                    const txt = msg.serverContent.outputTranscription.text;
+                    addMessage('ai', txt);
+                }
+
+                // Tool Calls
+                const toolCalls = msg.toolCall?.functionCalls || [];
+                for (const call of toolCalls) {
+                    executeUiAction({
+                        type: call.name,
+                        ...call.args
+                    });
+                    // Return tool response to keep WebSocket healthy
+                    if (liveWs && liveWs.readyState === WebSocket.OPEN) {
+                        liveWs.send(JSON.stringify({
+                            toolResponse: {
+                                functionResponses: [
+                                    {
+                                        response: { output: { success: true } },
+                                        id: call.id
+                                    }
+                                ]
+                            }
+                        }));
+                    }
+                }
+
+                if (msg.serverContent?.turnComplete) {
+                    if (voiceStateLabel) voiceStateLabel.textContent = 'Listening... (Speak anytime)';
+                }
             }
+
+            function play24kHzPcmChunk(base64Data) {
+                if (!playbackAudioCtx) return;
+                const rawBytes = base64ToUint8(base64Data);
+                const int16Array = new Int16Array(rawBytes.buffer, rawBytes.byteOffset, rawBytes.byteLength / 2);
+                const float32 = new Float32Array(int16Array.length);
+                for (let i = 0; i < int16Array.length; i++) {
+                    float32[i] = int16Array[i] / 32768.0;
+                }
+
+                const buffer = playbackAudioCtx.createBuffer(1, float32.length, 24000);
+                buffer.getChannelData(0).set(float32);
+
+                const src = playbackAudioCtx.createBufferSource();
+                src.buffer = buffer;
+                src.connect(playbackAudioCtx.destination);
+
+                const startTime = Math.max(playbackAudioCtx.currentTime, nextAudioPlayTime);
+                src.start(startTime);
+                nextAudioPlayTime = startTime + buffer.duration;
+
+                activeAudioSources.push(src);
+                src.onended = () => {
+                    const idx = activeAudioSources.indexOf(src);
+                    if (idx !== -1) activeAudioSources.splice(idx, 1);
+                };
+            }
+
+            liveWs.onerror = (err) => {
+                console.error('[LIVE WS ERROR]', err);
+                if (voiceStateLabel) voiceStateLabel.textContent = 'Live connection error.';
+                stopVoiceMode();
+            };
+
+            liveWs.onclose = (event) => {
+                console.log('[LIVE WS CLOSED]', event.code, event.reason);
+                stopVoiceMode();
+            };
+
+        } catch (err) {
+            console.error('[LIVE ERROR]', err);
+            if (voiceStateLabel) voiceStateLabel.textContent = 'Live voice unavailable.';
+            stopVoiceMode();
         }
     }
 
@@ -1003,24 +1222,41 @@ document.addEventListener('DOMContentLoaded', () => {
         isVoiceActive = false;
         if (drawerVoiceBar) drawerVoiceBar.style.display = 'none';
         if (drawerMicToggle) drawerMicToggle.classList.remove('voice-active');
-        if (recognition) {
-            try { recognition.stop(); } catch (e) {}
+        stopActiveAudioPlayback();
+
+        if (micProcessor) {
+            try { micProcessor.disconnect(); } catch (e) {}
+            micProcessor = null;
+        }
+        if (micStream) {
+            try { micStream.getTracks().forEach(t => t.stop()); } catch (e) {}
+            micStream = null;
+        }
+        if (micAudioCtx) {
+            try { micAudioCtx.close(); } catch (e) {}
+            micAudioCtx = null;
+        }
+        if (playbackAudioCtx) {
+            try { playbackAudioCtx.close(); } catch (e) {}
+            playbackAudioCtx = null;
+        }
+        if (liveWs) {
+            try { liveWs.close(); } catch (e) {}
+            liveWs = null;
         }
     }
 
     if (heroVoiceTrigger) {
         heroVoiceTrigger.addEventListener('click', () => {
-            startVoiceMode();
+            if (isVoiceActive) stopVoiceMode();
+            else startVoiceMode();
         });
     }
 
     if (drawerMicToggle) {
         drawerMicToggle.addEventListener('click', () => {
-            if (isVoiceActive) {
-                stopVoiceMode();
-            } else {
-                startVoiceMode();
-            }
+            if (isVoiceActive) stopVoiceMode();
+            else startVoiceMode();
         });
     }
 

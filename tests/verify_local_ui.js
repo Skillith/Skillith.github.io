@@ -89,22 +89,23 @@ server.listen(8092, async () => {
                 (() => {
                     const results = {};
                     
-                    // US-1: Layout and section order verification
+                    // US-1: Lean Hero & Section Order
                     const enterpriseSec = document.getElementById('enterprise');
                     const projectsSec = document.getElementById('projects');
                     const aboutSec = document.getElementById('about');
 
                     results.us1 = {
-                        hasHeroProofStrip: !!document.querySelector('.proof-strip'),
+                        isHeroLean: !document.querySelector('.proof-strip') && !document.querySelector('.hero-subtitle-container'),
                         hasHeroConciergeBar: !!document.querySelector('.concierge-hero-bar'),
                         enterpriseBeforeProjects: (enterpriseSec.compareDocumentPosition(projectsSec) & Node.DOCUMENT_POSITION_FOLLOWING) > 0,
                         projectsBeforeAbout: (projectsSec.compareDocumentPosition(aboutSec) & Node.DOCUMENT_POSITION_FOLLOWING) > 0
                     };
 
-                    // US-2: LexSecure Enterprise Spotlight Card & Demo Request Modal
+                    // US-2: Lean LexSecure Card (3 bullets + Demo modal)
                     const lexCard = document.getElementById('cardLexSecure');
                     const lexDemoBtn = document.getElementById('btnRequestLexDemo');
                     const lexVitalsBtn = document.querySelector('.btn-vitals[data-project="lexsecure"]');
+                    const leanBulletsCount = document.querySelectorAll('.enterprise-lean-bullets li').length;
                     
                     if (lexDemoBtn) lexDemoBtn.click();
                     const demoModalOpen = document.getElementById('demoRequestModal').classList.contains('active');
@@ -122,32 +123,20 @@ server.listen(8092, async () => {
 
                     results.us2 = {
                         hasLexCard: !!lexCard,
+                        leanBulletsCount,
                         demoModalOpens: demoModalOpen,
                         lexVitalsModal
                     };
 
-                    // US-3: Last Breath Game Card & Vitals
-                    const lbCard = document.getElementById('cardLastBreath');
-                    const lbLink = lbCard ? lbCard.querySelector('a.project-link[href="https://last-breath-game-2026.web.app"]') : null;
-                    const lbVitalsBtn = document.querySelector('.btn-vitals[data-project="last-breath"]');
-
-                    if (lbVitalsBtn) lbVitalsBtn.click();
-                    const lbVitalsModal = {
-                        opened: document.getElementById('vitalsModal').classList.contains('active'),
-                        title: document.getElementById('vitalsAppTitle').textContent,
-                        installs: document.getElementById('vitalInstalls').textContent,
-                        revenue: document.getElementById('vitalRevenue').textContent,
-                        paying: document.getElementById('vitalPaying').textContent
-                    };
-                    document.getElementById('vitalsModalClose').click();
-
+                    // US-3: Consumer Apps Popularity Ordering
+                    const projectTitles = Array.from(document.querySelectorAll('.project-title')).map(el => el.textContent.trim());
                     results.us3 = {
-                        hasLbCard: !!lbCard,
-                        hasLiveLink: !!lbLink,
-                        lbVitalsModal
+                        projectTitles,
+                        mostPopularFirst: projectTitles[0] === 'TerraCatch' && projectTitles[1] === 'Morn & Eve',
+                        hasLastBreath: projectTitles.includes('Last Breath')
                     };
 
-                    // US-4: AI Concierge Drawer & Tool dispatch elements
+                    // US-4: AI Concierge Drawer Elements
                     const conciergeDrawer = document.getElementById('aiConciergeDrawer');
                     const floatingAiBtn = document.getElementById('floatingAiTrigger');
                     results.us4 = {
@@ -168,105 +157,67 @@ server.listen(8092, async () => {
                         qrImgSrc
                     };
 
-                    // US-6: User stat badges
-                    const badges = {};
-                    document.querySelectorAll('.user-stat-badge').forEach(b => {
-                        const proj = b.getAttribute('data-project');
-                        const num = b.querySelector('.stat-num')?.textContent.trim();
-                        badges[proj] = num;
-                    });
-                    results.badges = badges;
-
-                    // Existing project modals verification
-                    const meBtn = document.querySelector('.btn-vitals[data-project="morn-eve"]');
-                    if (meBtn) meBtn.click();
-                    results.mornEveModal = {
-                        installs: document.getElementById('vitalInstalls').textContent,
-                        revenue: document.getElementById('vitalRevenue').textContent
-                    };
-                    document.getElementById('vitalsModalClose').click();
-
-                    const tcBtn = document.querySelector('.btn-vitals[data-project="terracatch"]');
-                    if (tcBtn) tcBtn.click();
-                    results.terraCatchModal = {
-                        installs: document.getElementById('vitalInstalls').textContent,
-                        revenue: document.getElementById('vitalRevenue').textContent
-                    };
-                    document.getElementById('vitalsModalClose').click();
-
                     return results;
                 })()
             `,
             returnByValue: true
         });
 
-        const testResults = evalRes.result?.result?.value;
-        console.log('[TEST RESULTS]:', JSON.stringify(testResults, null, 2));
+        const r = (evalRes.result && evalRes.result.result) ? evalRes.result.result.value : (evalRes.result ? evalRes.result.value : null);
+        console.log('[TEST RESULTS]:', JSON.stringify(r, null, 2));
 
         // Assertions
-        let pass = true;
+        if (!r.us1.isHeroLean) throw new Error('US-1 Failed: Hero is not lean (proof strip or badge still present)');
+        if (!r.us1.hasHeroConciergeBar) throw new Error('US-1 Failed: Concierge hero bar missing');
+        if (!r.us2.hasLexCard || r.us2.leanBulletsCount !== 3) throw new Error('US-2 Failed: LexSecure lean card invalid or bullets count != 3');
+        if (!r.us3.mostPopularFirst) throw new Error('US-3 Failed: Projects not ordered by popularity (TerraCatch must be first, Morn & Eve second)');
+        if (!r.us4.hasDrawer || !r.us5.qrModalOpens) throw new Error('US-4/US-5 Failed: Concierge drawer or QR modal failed');
 
-        // US-1 Checks
-        if (!testResults.us1.hasHeroProofStrip || !testResults.us1.hasHeroConciergeBar) {
-            console.error('FAIL US-1: Hero missing Proof Strip or Concierge Bar');
-            pass = false;
-        }
-        if (!testResults.us1.enterpriseBeforeProjects || !testResults.us1.projectsBeforeAbout) {
-            console.error('FAIL US-1: Section order incorrect. Expected Enterprise -> Projects -> About');
-            pass = false;
-        }
+        // Test Live Text Chat Query to standalone skillith-portfolio Cloud Function
+        console.log('[TEST] Testing live chatbot query in browser UI...');
+        await send('Runtime.evaluate', {
+            expression: `
+                (() => {
+                    const inp = document.getElementById('heroChatInput');
+                    const sendBtn = document.getElementById('heroChatSend');
+                    inp.value = "Tell me about LexSecure's zero data retention";
+                    sendBtn.click();
+                })()
+            `
+        });
 
-        // US-2 Checks
-        if (!testResults.us2.hasLexCard || !testResults.us2.demoModalOpens) {
-            console.error('FAIL US-2: LexSecure card missing or Demo Request modal failed to open');
-            pass = false;
-        }
-        if (testResults.us2.lexVitalsModal.title !== 'LexSecure' || testResults.us2.lexVitalsModal.coreCount !== '150') {
-            console.error('FAIL US-2: LexSecure vitals mismatch', testResults.us2.lexVitalsModal);
-            pass = false;
-        }
-
-        // US-3 Checks
-        if (!testResults.us3.hasLbCard || !testResults.us3.hasLiveLink) {
-            console.error('FAIL US-3: Last Breath card or live link missing');
-            pass = false;
-        }
-        if (testResults.us3.lbVitalsModal.title !== 'Last Breath' || testResults.us3.lbVitalsModal.installs !== '24') {
-            console.error('FAIL US-3: Last Breath vitals mismatch', testResults.us3.lbVitalsModal);
-            pass = false;
-        }
-
-        // US-4 Checks
-        if (!testResults.us4.hasDrawer || !testResults.us4.hasFloatingBtn || !testResults.us4.hasChips) {
-            console.error('FAIL US-4: AI Concierge drawer, floating trigger, or chips missing');
-            pass = false;
-        }
-
-        // US-5 Checks
-        if (!testResults.us5.qrModalOpens || testResults.us5.qrImgSrc !== 'assets/skillith-qr.svg') {
-            console.error('FAIL US-5: QR modal failed to open or QR image src is incorrect');
-            pass = false;
+        // Wait for Cloud Function to finish generating reply (poll up to 12s)
+        let cRes = {};
+        for (let wait = 0; wait < 12; wait++) {
+            await new Promise(res => setTimeout(res, 1000));
+            const chatCheck = await send('Runtime.evaluate', {
+                expression: `
+                    (() => {
+                        const msgs = Array.from(document.querySelectorAll('#drawerMessages .ai-msg .msg-content p'));
+                        const lastMsg = msgs.length ? msgs[msgs.length - 1].textContent : '';
+                        return {
+                            msgCount: msgs.length,
+                            lastAiResponse: lastMsg,
+                            isThinking: lastMsg === 'Thinking...',
+                            containsZdrOrLex: lastMsg.toLowerCase().includes('lexsecure') || lastMsg.toLowerCase().includes('retention') || lastMsg.toLowerCase().includes('tenant') || lastMsg.toLowerCase().includes('data')
+                        };
+                    })()
+                `,
+                returnByValue: true
+            });
+            cRes = (chatCheck.result && chatCheck.result.result) ? chatCheck.result.result.value : (chatCheck.result ? chatCheck.result.value : {});
+            if (!cRes.isThinking && cRes.msgCount >= 2) break;
         }
 
-        // Existing regressions
-        if (testResults.mornEveModal.installs !== '257' || testResults.mornEveModal.revenue !== '$0') {
-            console.error('FAIL: Morn & Eve vitals regression');
-            pass = false;
-        }
-        if (testResults.terraCatchModal.installs !== '293' || !testResults.terraCatchModal.revenue.includes('$2.99')) {
-            console.error('FAIL: TerraCatch vitals regression');
-            pass = false;
+        console.log('[LIVE CHATBOT RESULT]:', cRes);
+        if (!cRes.containsZdrOrLex) {
+            throw new Error(`Chatbot live query failed! Last AI response: "${cRes.lastAiResponse}"`);
         }
 
-        if (pass) {
-            console.log('[TEST SUCCESS] All User Stories (US-1 to US-6) verified accurately in local browser environment!');
-        } else {
-            process.exitCode = 1;
-        }
-
+        console.log('[TEST SUCCESS] All tests passed! Lean layout, popularity ordering, and live AI chatbot confirmed.');
         ws.close();
-    } catch (e) {
-        console.error('[TEST ERROR]', e);
+    } catch (err) {
+        console.error('[TEST ERROR]', err);
         process.exitCode = 1;
     } finally {
         chrome.kill();

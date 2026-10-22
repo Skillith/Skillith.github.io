@@ -149,10 +149,10 @@ header {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
     align-items: center;
-    padding-top: 100px;
+    padding: 6.5rem 0 2rem;
     position: relative;
 }
 
@@ -1559,71 +1559,48 @@ footer {
     font-size: 1.05rem;
     line-height: 1.7;
 }
-.enterprise-pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-.pillar-card {
-    background: rgba(8, 11, 17, 0.5);
-    border: 1px solid var(--glass-border);
-    border-radius: 14px;
-    padding: 1.5rem;
-}
-.pillar-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: rgba(139, 92, 246, 0.15);
-    color: #c4b5fd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-}
-.pillar-card h5 {
+.enterprise-summary-lead {
     font-size: 1.05rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-}
-.pillar-card p {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
+    color: #e2e8f0;
     line-height: 1.6;
+    margin-bottom: 1.5rem;
 }
-.enterprise-economics-banner {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: rgba(16, 185, 129, 0.05);
-    border: 1px solid rgba(16, 185, 129, 0.2);
-    border-radius: 14px;
-    padding: 1.25rem 2rem;
-    margin-bottom: 2rem;
-}
-.econ-stat {
+
+.enterprise-lean-bullets {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 0 0 2rem 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    gap: 1rem;
 }
-.econ-val {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #10b981;
-    font-family: var(--font-mono);
-}
-.econ-lbl {
-    font-size: 0.8rem;
+
+.enterprise-lean-bullets li {
+    list-style: none !important;
+    list-style-type: none !important;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba(8, 11, 17, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
     color: var(--text-secondary);
-    margin-top: 0.25rem;
 }
-.econ-divider {
-    width: 1px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.1);
+
+.enterprise-lean-bullets li i {
+    color: var(--accent-cyan);
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.enterprise-lean-bullets li strong {
+    color: var(--text-primary);
+    font-weight: 600;
 }
 .enterprise-actions {
     display: flex;

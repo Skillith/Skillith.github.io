@@ -426,10 +426,11 @@ def collect_real_production_metrics():
     print(f"  [SUCCESS] Wrote verified production stats to {json_path}")
 
     # -------------------------------------------------------------
-    # 2. Write to Firestore public_stats/portfolio in pingquest-rpg
+    # 2. Write to Firestore public_stats/portfolio in skillith-portfolio
     # -------------------------------------------------------------
     try:
-        db_pq.collection('public_stats').document('portfolio').set({
+        _, db_portfolio = get_app_and_db('skillith-portfolio')
+        db_portfolio.collection('public_stats').document('portfolio').set({
             'morn_and_eve_users': me_accounts,
             'terracatch_users': tc_accounts,
             'dalil_users': dalil_accounts,
@@ -442,9 +443,9 @@ def collect_real_production_metrics():
             'last_updated': firestore.SERVER_TIMESTAMP,
             'telemetry_json': json.dumps(metrics_payload)
         }, merge=True)
-        print("  [SUCCESS] Updated Firestore public_stats/portfolio document!")
+        print("  [SUCCESS] Updated Firestore public_stats/portfolio document in skillith-portfolio!")
     except Exception as e:
-        print(f"  [WARN] Firestore write to public_stats/portfolio failed: {e}")
+        print(f"  [WARN] Firestore write to public_stats/portfolio in skillith-portfolio failed: {e}")
 
 if __name__ == '__main__':
     collect_real_production_metrics()

@@ -1,4 +1,4 @@
-﻿# Environment & Secrets
+# Environment & Secrets
 .env
 .env.*
 *.env
@@ -15,6 +15,10 @@ __pycache__/
 .venv/
 venv/
 ENV/
+
+# Node
+node_modules/
+functions/node_modules/
 
 # OS & Editor
 .DS_Store
