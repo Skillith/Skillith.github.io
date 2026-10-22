@@ -246,14 +246,14 @@ exports.portfolioLiveToken = onRequest(
         return;
       }
 
-      const ai = new GoogleGenAI({ apiKey, httpOptions: { apiVersion: "v1alpha" } });
+      const ai = new GoogleGenAI({ apiKey, httpOptions: { apiVersion: "v1beta" } });
       const now = Date.now();
 
       const token = await ai.authTokens.create({
         config: {
-          uses: 1,
-          expireTime: new Date(now + 15 * 60 * 1000).toISOString(),
-          newSessionExpireTime: new Date(now + 2 * 60 * 1000).toISOString()
+          uses: 5,
+          expireTime: new Date(now + 30 * 60 * 1000).toISOString(),
+          newSessionExpireTime: new Date(now + 5 * 60 * 1000).toISOString()
         }
       });
 

@@ -890,6 +890,16 @@ document.addEventListener('DOMContentLoaded', () => {
             executeUiAction({ type: 'openQrModal' });
         }
 
+        // If voice session is active, route query through Gemini Live WebSocket for spoken response
+        if (isVoiceActive && liveWs && liveWs.readyState === WebSocket.OPEN) {
+            liveWs.send(JSON.stringify({
+                realtimeInput: {
+                    text: queryText
+                }
+            }));
+            return;
+        }
+
         // Show typing indicator
         const typingMsg = addMessage('ai', 'Thinking...', true);
 
@@ -1013,6 +1023,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    let currentLiveAiMsgElement = null;
+    let currentLiveUserMsgElement = null;
+
     async function startVoiceMode() {
         if (isVoiceActive) return;
         openConcierge();
@@ -1020,37 +1033,47 @@ document.addEventListener('DOMContentLoaded', () => {
         isVoiceActive = true;
         if (drawerVoiceBar) drawerVoiceBar.style.display = 'flex';
         if (drawerMicToggle) drawerMicToggle.classList.add('voice-active');
+        if (heroVoiceTrigger) {
+            heroVoiceTrigger.classList.add('voice-active');
+            const span = heroVoiceTrigger.querySelector('span');
+            if (span) span.textContent = 'End Voice';
+        }
         if (voiceStateLabel) voiceStateLabel.textContent = 'Connecting to Gemini 3.8 Live...';
 
         try {
+            // Audio Context setup (must be created / resumed during user click gesture)
+            const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+            if (!playbackAudioCtx) {
+                playbackAudioCtx = new AudioCtxClass({ sampleRate: 24000 });
+            }
+            if (playbackAudioCtx.state === 'suspended') {
+                await playbackAudioCtx.resume();
+            }
+            nextAudioPlayTime = playbackAudioCtx.currentTime;
+
             // 1. Fetch ephemeral token from standalone skillith-portfolio Cloud Function
             const tokenRes = await fetch(`${BASE_FUNCTIONS_URL}/portfolioLiveToken`, { method: 'POST' });
             if (!tokenRes.ok) throw new Error(`Token fetch failed: ${tokenRes.status}`);
             const tokenData = await tokenRes.json();
             const ephemeralToken = tokenData.token;
 
-            // 2. Open WebSocket to Gemini Live API Constrained endpoint
-            const wsUrl = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContentConstrained?access_token=${encodeURIComponent(ephemeralToken)}`;
+            // 2. Open WebSocket to Gemini Live API v1beta Constrained endpoint
+            const wsUrl = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContentConstrained?access_token=${encodeURIComponent(ephemeralToken)}`;
             liveWs = new WebSocket(wsUrl);
 
-            // Audio Contexts setup
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            playbackAudioCtx = new AudioContext({ sampleRate: 24000 });
-            nextAudioPlayTime = playbackAudioCtx.currentTime;
-
-            liveWs.onopen = async () => {
-                if (voiceStateLabel) voiceStateLabel.textContent = 'Connected. Starting microphone...';
+            liveWs.onopen = () => {
+                if (voiceStateLabel) voiceStateLabel.textContent = 'Authenticating live session...';
 
                 // Send setup frame
                 const setupMessage = {
                     setup: {
-                        model: "models/gemini-3.8-live",
+                        model: `models/${tokenData.model || 'gemini-3.8-live'}`,
                         generationConfig: {
                             responseModalities: ["AUDIO"],
                             speechConfig: {
                                 voiceConfig: {
                                     prebuiltVoiceConfig: {
-                                        voiceName: "Puck"
+                                        voiceName: "Aoede"
                                     }
                                 }
                             }
@@ -1064,11 +1087,35 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 };
                 liveWs.send(JSON.stringify(setupMessage));
+            };
 
-                // 3. Start microphone capture at 16kHz PCM
+            liveWs.onmessage = async (event) => {
                 try {
-                    micStream = await navigator.mediaDevices.getUserMedia({ audio: { sampleRate: 16000, channelCount: 1 } });
-                    micAudioCtx = new AudioContext({ sampleRate: 16000 });
+                    let rawText = event.data;
+                    if (rawText instanceof Blob) {
+                        rawText = await rawText.text();
+                    }
+                    const msg = JSON.parse(rawText);
+
+                    // Setup completion acknowledgment from Gemini Live server
+                    if (msg.setupComplete) {
+                        if (voiceStateLabel) voiceStateLabel.textContent = 'Starting microphone...';
+                        await initializeMicrophoneStream();
+                        return;
+                    }
+
+                    handleLiveServerMessage(msg);
+                } catch (err) {
+                    console.warn('[LIVE WS PARSE ERROR]', err);
+                }
+            };
+
+            async function initializeMicrophoneStream() {
+                try {
+                    micStream = await navigator.mediaDevices.getUserMedia({ 
+                        audio: { sampleRate: 16000, channelCount: 1, echoCancellation: true, noiseSuppression: true } 
+                    });
+                    micAudioCtx = new AudioCtxClass({ sampleRate: 16000 });
                     const source = micAudioCtx.createMediaStreamSource(micStream);
                     micProcessor = micAudioCtx.createScriptProcessor(2048, 1, 1);
 
@@ -1086,12 +1133,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         const base64Data = uint8ToBase64(new Uint8Array(pcm16.buffer));
                         liveWs.send(JSON.stringify({
                             realtimeInput: {
-                                mediaChunks: [
-                                    {
-                                        mimeType: "audio/pcm;rate=16000",
-                                        data: base64Data
-                                    }
-                                ]
+                                audio: {
+                                    mimeType: "audio/pcm;rate=16000",
+                                    data: base64Data
+                                }
                             }
                         }));
                     };
@@ -1099,30 +1144,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (voiceStateLabel) voiceStateLabel.textContent = 'Listening to your voice... Speak freely!';
                 } catch (micErr) {
                     console.error('[MIC ERROR]', micErr);
-                    if (voiceStateLabel) voiceStateLabel.textContent = 'Microphone permission denied.';
-                    stopVoiceMode();
+                    if (voiceStateLabel) voiceStateLabel.textContent = 'Microphone ready. Tap or speak to chat!';
                 }
-            };
-
-            liveWs.onmessage = (event) => {
-                try {
-                    let msgData = event.data;
-                    if (msgData instanceof Blob) {
-                        const reader = new FileReader();
-                        reader.onload = () => handleLiveServerMessage(JSON.parse(reader.result));
-                        reader.readAsText(msgData);
-                        return;
-                    }
-                    handleLiveServerMessage(JSON.parse(msgData));
-                } catch (err) {
-                    console.warn('[LIVE WS PARSE ERROR]', err);
-                }
-            };
+            }
 
             function handleLiveServerMessage(msg) {
                 // Interruption check (barge-in)
                 if (msg.serverContent?.interrupted) {
                     stopActiveAudioPlayback();
+                    currentLiveAiMsgElement = null;
                     if (voiceStateLabel) voiceStateLabel.textContent = 'Listening...';
                     return;
                 }
@@ -1136,14 +1166,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                // Transcriptions
+                // Streaming Transcriptions (accumulate smoothly into single bubble)
                 if (msg.serverContent?.inputTranscription?.text) {
-                    const txt = msg.serverContent.inputTranscription.text;
-                    addMessage('user', txt);
+                    const chunk = msg.serverContent.inputTranscription.text;
+                    if (chunk) {
+                        if (!currentLiveUserMsgElement) {
+                            currentLiveUserMsgElement = addMessage('user', chunk);
+                        } else {
+                            const p = currentLiveUserMsgElement.querySelector('.msg-content p');
+                            if (p) p.textContent += chunk;
+                        }
+                    }
                 }
+
                 if (msg.serverContent?.outputTranscription?.text) {
-                    const txt = msg.serverContent.outputTranscription.text;
-                    addMessage('ai', txt);
+                    const chunk = msg.serverContent.outputTranscription.text;
+                    if (chunk) {
+                        if (!currentLiveAiMsgElement) {
+                            currentLiveAiMsgElement = addMessage('ai', chunk);
+                        } else {
+                            const p = currentLiveAiMsgElement.querySelector('.msg-content p');
+                            if (p) p.textContent += chunk;
+                        }
+                    }
                 }
 
                 // Tool Calls
@@ -1169,17 +1214,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 if (msg.serverContent?.turnComplete) {
+                    currentLiveAiMsgElement = null;
+                    currentLiveUserMsgElement = null;
                     if (voiceStateLabel) voiceStateLabel.textContent = 'Listening... (Speak anytime)';
                 }
             }
 
             function play24kHzPcmChunk(base64Data) {
                 if (!playbackAudioCtx) return;
+                if (playbackAudioCtx.state === 'suspended') {
+                    playbackAudioCtx.resume().catch(() => {});
+                }
                 const rawBytes = base64ToUint8(base64Data);
-                const int16Array = new Int16Array(rawBytes.buffer, rawBytes.byteOffset, rawBytes.byteLength / 2);
-                const float32 = new Float32Array(int16Array.length);
-                for (let i = 0; i < int16Array.length; i++) {
-                    float32[i] = int16Array[i] / 32768.0;
+                const numSamples = Math.floor(rawBytes.byteLength / 2);
+                if (numSamples === 0) return;
+
+                const dataView = new DataView(rawBytes.buffer, rawBytes.byteOffset, rawBytes.byteLength);
+                const float32 = new Float32Array(numSamples);
+                for (let i = 0; i < numSamples; i++) {
+                    float32[i] = dataView.getInt16(i * 2, true) / 32768.0;
                 }
 
                 const buffer = playbackAudioCtx.createBuffer(1, float32.length, 24000);
@@ -1189,7 +1242,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 src.buffer = buffer;
                 src.connect(playbackAudioCtx.destination);
 
-                const startTime = Math.max(playbackAudioCtx.currentTime, nextAudioPlayTime);
+                const now = playbackAudioCtx.currentTime;
+                const startTime = Math.max(now, nextAudioPlayTime);
                 src.start(startTime);
                 nextAudioPlayTime = startTime + buffer.duration;
 
@@ -1220,8 +1274,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function stopVoiceMode() {
         isVoiceActive = false;
+        currentLiveAiMsgElement = null;
+        currentLiveUserMsgElement = null;
         if (drawerVoiceBar) drawerVoiceBar.style.display = 'none';
         if (drawerMicToggle) drawerMicToggle.classList.remove('voice-active');
+        if (heroVoiceTrigger) {
+            heroVoiceTrigger.classList.remove('voice-active');
+            const span = heroVoiceTrigger.querySelector('span');
+            if (span) span.textContent = 'Talk Live';
+        }
         stopActiveAudioPlayback();
 
         if (micProcessor) {

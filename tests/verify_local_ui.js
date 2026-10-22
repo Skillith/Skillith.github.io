@@ -42,6 +42,9 @@ server.listen(8092, async () => {
         '--no-first-run',
         '--no-default-browser-check',
         '--disable-gpu',
+        '--use-fake-ui-for-media-stream',
+        '--use-fake-device-for-media-stream',
+        '--autoplay-policy=no-user-gesture-required',
         'about:blank'
     ]);
 
@@ -214,7 +217,35 @@ server.listen(8092, async () => {
             throw new Error(`Chatbot live query failed! Last AI response: "${cRes.lastAiResponse}"`);
         }
 
-        console.log('[TEST SUCCESS] All tests passed! Lean layout, popularity ordering, and live AI chatbot confirmed.');
+        // Test Live Gemini 3.8 Live Voice Mode
+        console.log('[TEST] Testing Gemini 3.8 Live Voice Mode in browser UI...');
+        await send('Runtime.evaluate', {
+            expression: "document.getElementById('heroVoiceTrigger').click()"
+        });
+
+        let voiceReady = false;
+        for (let wait = 0; wait < 10; wait++) {
+            await new Promise(res => setTimeout(res, 1000));
+            const voiceCheck = await send('Runtime.evaluate', {
+                expression: "({ stateText: document.getElementById('voiceStateLabel')?.textContent, heroActive: document.getElementById('heroVoiceTrigger')?.classList.contains('voice-active'), drawerActive: document.getElementById('drawerMicToggle')?.classList.contains('voice-active') })",
+                returnByValue: true
+            });
+            const vVal = (voiceCheck.result && voiceCheck.result.result) ? voiceCheck.result.result.value : {};
+            if (vVal.stateText && vVal.stateText.includes('Listening to your voice')) {
+                voiceReady = true;
+                break;
+            }
+        }
+        if (!voiceReady) throw new Error('Live voice mode failed to initialize and enter listening state');
+
+        // Turn off voice mode
+        await send('Runtime.evaluate', {
+            expression: "document.getElementById('drawerMicToggle').click()"
+        });
+        await new Promise(res => setTimeout(res, 500));
+        console.log('[LIVE VOICE RESULT]: Gemini 3.8 Live WebSocket connected, authenticated, and ready.');
+
+        console.log('[TEST SUCCESS] All tests passed! Lean layout, popularity ordering, live text chatbot, and Gemini 3.8 Live voice model confirmed.');
         ws.close();
     } catch (err) {
         console.error('[TEST ERROR]', err);

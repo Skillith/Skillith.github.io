@@ -1965,6 +1965,13 @@ footer {
 .drawer-mic-toggle:hover, .drawer-close-btn:hover {
     background: rgba(255, 255, 255, 0.15);
 }
+.hero-voice-btn.voice-active {
+    background: #ef4444 !important;
+    border-color: #ef4444 !important;
+    color: white !important;
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.45) !important;
+    animation: pulseGlow 1.5s infinite;
+}
 .drawer-mic-toggle.voice-active {
     background: #ef4444;
     border-color: #ef4444;
